@@ -7,7 +7,7 @@ var {
   View
 } = React;
 
-const styles = StyleSheet.create({
+var styles = StyleSheet.create({
 
   activityContainer: {
     flex: 1,

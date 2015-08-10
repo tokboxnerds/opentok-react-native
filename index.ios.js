@@ -10,6 +10,7 @@ var {
   StyleSheet,
   Text,
   View,
+  StatusBarIOS
 } = React;
 
 
@@ -20,6 +21,7 @@ var { requireNativeComponent } = require('react-native');
 var ReactPublisher = requireNativeComponent('ReactPublisher', null);
 var ReactSubscriber = requireNativeComponent('ReactSubscriber', null);
 var LoadingView = require('./views/loading_view.ios.js');
+var RoomInputView = require('./views/room_input_view.ios.js');
 
 console.log('hello');
 
@@ -30,19 +32,26 @@ var rntb = React.createClass({
       sessionState: 'DISCONNECTED',
       streams: [],
       publishing: false,
-      loaded: false
+      loaded: false,
+      room: null
     };
   },
 
-  componentDidMount: function() {
+  componentDidMount : function() {
+    StatusBarIOS.setStyle('light-content');
+  },
+
+  connectToRoom: function(room) {
     // Fetch from meet.tokbox.com
-    fetch('https://meet.tokbox.com/test').then(data => {
+    this.setState((state) => {
+      state.room = room;
+      return state;
+    });
+    fetch('https://meet.tokbox.com/' + room).then(data => {
       return data.json();
     }).then(room => {
-      console.log('got room', room.apiKey, room.sessionId);
       OpenTokSessionManager.initSession(room.apiKey, room.sessionId, () => {
         this.setState({ sessionState: 'INITIALIZED' });
-        console.log('token: ', room.token);
         OpenTokSessionManager.connect(room.token, err => {
           if (err) {
             this.setState({ sessionState: 'ERROR', loaded: true });
@@ -88,6 +97,9 @@ var rntb = React.createClass({
   },
 
   render: function() {
+    if (!this.state.room) {
+      return <RoomInputView onSubmit={(room) => this.connectToRoom(room)}/>;
+    }
     if (!this.state.loaded) {
       return <LoadingView/>;
     }
