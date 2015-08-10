@@ -23,7 +23,7 @@
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		146834051AC3E58100842450 /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 146834041AC3E56700842450 /* libReact.a */; };
 		832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 832341B51AAA6A8300B99B32 /* libRCTText.a */; };
-		CD9CAF0D1B782C28003F9790 /* OpenTok.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD9CAF0C1B782C28003F9790 /* OpenTok.framework */; };
+		8CB80344F2479E755C0CF225 /* libPods-rntb.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EFF2FB87E745C3C58E41FC2D /* libPods-rntb.a */; };
 		CD9CAF191B782D2A003F9790 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD9CAF181B782D2A003F9790 /* AudioToolbox.framework */; };
 		CD9CAF1B1B782D32003F9790 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD9CAF1A1B782D32003F9790 /* AVFoundation.framework */; };
 		CD9CAF1D1B782D3A003F9790 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD9CAF1C1B782D3A003F9790 /* CoreGraphics.framework */; };
@@ -42,6 +42,7 @@
 		CD9CAF3A1B783189003F9790 /* OpenTokSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CD9CAF391B783189003F9790 /* OpenTokSessionManager.m */; };
 		CD9CAF3E1B783AEE003F9790 /* EvilDirtyHack.m in Sources */ = {isa = PBXBuildFile; fileRef = CD9CAF3D1B783AEE003F9790 /* EvilDirtyHack.m */; };
 		CD9CAF401B78583B003F9790 /* ReactSubscriber.m in Sources */ = {isa = PBXBuildFile; fileRef = CD9CAF3F1B78583B003F9790 /* ReactSubscriber.m */; };
+		CDAEF1D41B786F3700BF410C /* SubscriberHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = CDAEF1D31B786F3700BF410C /* SubscriberHelper.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -146,7 +147,8 @@
 		146833FF1AC3E56700842450 /* React.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = React.xcodeproj; path = "node_modules/react-native/React/React.xcodeproj"; sourceTree = "<group>"; };
 		78C398B01ACF4ADC00677621 /* RCTLinking.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTLinking.xcodeproj; path = "node_modules/react-native/Libraries/LinkingIOS/RCTLinking.xcodeproj"; sourceTree = "<group>"; };
 		832341B01AAA6A8300B99B32 /* RCTText.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTText.xcodeproj; path = "node_modules/react-native/Libraries/Text/RCTText.xcodeproj"; sourceTree = "<group>"; };
-		CD9CAF0C1B782C28003F9790 /* OpenTok.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = OpenTok.framework; sourceTree = "<group>"; };
+		AE8EE8D0F827F2B68E822989 /* Pods-rntb.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-rntb.release.xcconfig"; path = "Pods/Target Support Files/Pods-rntb/Pods-rntb.release.xcconfig"; sourceTree = "<group>"; };
+		AFDBD855D63DFF7A8F9C40DE /* Pods-rntb.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-rntb.debug.xcconfig"; path = "Pods/Target Support Files/Pods-rntb/Pods-rntb.debug.xcconfig"; sourceTree = "<group>"; };
 		CD9CAF181B782D2A003F9790 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		CD9CAF1A1B782D32003F9790 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		CD9CAF1C1B782D3A003F9790 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -166,6 +168,9 @@
 		CD9CAF3C1B783AEE003F9790 /* EvilDirtyHack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EvilDirtyHack.h; path = iOS/EvilDirtyHack.h; sourceTree = "<group>"; };
 		CD9CAF3D1B783AEE003F9790 /* EvilDirtyHack.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EvilDirtyHack.m; path = iOS/EvilDirtyHack.m; sourceTree = "<group>"; };
 		CD9CAF3F1B78583B003F9790 /* ReactSubscriber.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ReactSubscriber.m; path = iOS/ReactSubscriber.m; sourceTree = "<group>"; };
+		CDAEF1D21B786F3700BF410C /* SubscriberHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SubscriberHelper.h; path = iOS/SubscriberHelper.h; sourceTree = "<group>"; };
+		CDAEF1D31B786F3700BF410C /* SubscriberHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SubscriberHelper.m; path = iOS/SubscriberHelper.m; sourceTree = "<group>"; };
+		EFF2FB87E745C3C58E41FC2D /* libPods-rntb.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-rntb.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -204,7 +209,7 @@
 				832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */,
 				00C302EA1ABCBA2D00DB3ED1 /* libRCTVibration.a in Frameworks */,
 				139FDEF61B0652A700C62182 /* libRCTWebSocket.a in Frameworks */,
-				CD9CAF0D1B782C28003F9790 /* OpenTok.framework in Frameworks */,
+				8CB80344F2479E755C0CF225 /* libPods-rntb.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -299,6 +304,8 @@
 				CD9CAF391B783189003F9790 /* OpenTokSessionManager.m */,
 				CD9CAF3C1B783AEE003F9790 /* EvilDirtyHack.h */,
 				CD9CAF3D1B783AEE003F9790 /* EvilDirtyHack.m */,
+				CDAEF1D21B786F3700BF410C /* SubscriberHelper.h */,
+				CDAEF1D31B786F3700BF410C /* SubscriberHelper.m */,
 			);
 			name = rntb;
 			sourceTree = "<group>";
@@ -352,6 +359,7 @@
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
 				00E356EF1AD99517003FC87E /* rntbTests */,
 				83CBBA001A601CBA00E9B192 /* Products */,
+				EE09CE5F1ACE4FA199BFD305 /* Pods */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -383,9 +391,18 @@
 				CD9CAF1C1B782D3A003F9790 /* CoreGraphics.framework */,
 				CD9CAF1A1B782D32003F9790 /* AVFoundation.framework */,
 				CD9CAF181B782D2A003F9790 /* AudioToolbox.framework */,
-				CD9CAF0C1B782C28003F9790 /* OpenTok.framework */,
+				EFF2FB87E745C3C58E41FC2D /* libPods-rntb.a */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		EE09CE5F1ACE4FA199BFD305 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				AFDBD855D63DFF7A8F9C40DE /* Pods-rntb.debug.xcconfig */,
+				AE8EE8D0F827F2B68E822989 /* Pods-rntb.release.xcconfig */,
+			);
+			name = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -413,9 +430,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "rntb" */;
 			buildPhases = (
+				F24CAD26E9F4777A95D729B0 /* Check Pods Manifest.lock */,
 				13B07F871A680F5B00A75B9A /* Sources */,
 				13B07F8C1A680F5B00A75B9A /* Frameworks */,
 				13B07F8E1A680F5B00A75B9A /* Resources */,
+				F8F5DFE3DDA120407640E60B /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -598,6 +617,39 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		F24CAD26E9F4777A95D729B0 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		F8F5DFE3DDA120407640E60B /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-rntb/Pods-rntb-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		00E356EA1AD99517003FC87E /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -611,6 +663,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CDAEF1D41B786F3700BF410C /* SubscriberHelper.m in Sources */,
 				13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */,
 				CD9CAF3E1B783AEE003F9790 /* EvilDirtyHack.m in Sources */,
 				CD9CAF3A1B783189003F9790 /* OpenTokSessionManager.m in Sources */,
@@ -682,6 +735,7 @@
 		};
 		13B07F941A680F5B00A75B9A /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = AFDBD855D63DFF7A8F9C40DE /* Pods-rntb.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -695,14 +749,15 @@
 					"$(SRCROOT)/node_modules/react-native/React/**",
 				);
 				INFOPLIST_FILE = iOS/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = rntb;
 			};
 			name = Debug;
 		};
 		13B07F951A680F5B00A75B9A /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = AE8EE8D0F827F2B68E822989 /* Pods-rntb.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -716,8 +771,8 @@
 					"$(SRCROOT)/node_modules/react-native/React/**",
 				);
 				INFOPLIST_FILE = iOS/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = rntb;
 			};
 			name = Release;

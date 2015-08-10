@@ -45,7 +45,9 @@ var OpenTokSessionManager = {
 
   initPublisher: NativeOpenTokSessionManager.initPublisher,
 
-  publishToSession: NativeOpenTokSessionManager.publishToSession
+  publishToSession: NativeOpenTokSessionManager.publishToSession,
+
+  subscribeToStream: NativeOpenTokSessionManager.subscribeToStream,
 };
 
 module.exports = OpenTokSessionManager;

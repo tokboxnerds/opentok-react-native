@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES">
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
     </dependencies>
     <objects>
@@ -17,12 +16,18 @@
                     <color key="textColor" red="0.62745098040000002" green="0.61568627450000002" blue="0.57647058819999997" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="meet-logo" translatesAutoresizingMaskIntoConstraints="NO" id="IoG-md-61K">
-                    <rect key="frame" x="153" y="156" width="174" height="168"/>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="meet-logo" translatesAutoresizingMaskIntoConstraints="NO" id="IoG-md-61K">
+                    <rect key="frame" x="112" y="112" width="256" height="256"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="256" id="EZg-uc-AhV"/>
+                        <constraint firstAttribute="height" constant="256" id="I2f-SS-vIC"/>
+                    </constraints>
                 </imageView>
             </subviews>
             <color key="backgroundColor" red="0.14498500631313127" green="0.14053402242732801" blue="0.13483450389690865" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
+                <constraint firstAttribute="centerX" secondItem="IoG-md-61K" secondAttribute="centerX" id="82x-f9-str"/>
+                <constraint firstAttribute="centerY" secondItem="IoG-md-61K" secondAttribute="centerY" id="9PR-aU-9Ul"/>
                 <constraint firstAttribute="bottom" secondItem="8ie-xW-0ye" secondAttribute="bottom" constant="20" id="Kzo-t9-V3l"/>
                 <constraint firstItem="8ie-xW-0ye" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="20" symbolic="YES" id="MfP-vx-nX0"/>
                 <constraint firstAttribute="centerX" secondItem="8ie-xW-0ye" secondAttribute="centerX" id="ZEH-qu-HZ9"/>

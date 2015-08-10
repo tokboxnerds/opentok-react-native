@@ -4,6 +4,8 @@
  */
 'use strict';
 
+var x = new Promise(function(re,rj) {});
+
 var React = require('react-native');
 var {
   AppRegistry,
@@ -13,17 +15,17 @@ var {
   StatusBarIOS
 } = React;
 
+var OT = require('./src/index.ios.js');
 
-var OpenTokSessionManager = require('./opentok.ios.js');
+var {
+  PublisherView,
+  SubscriberView,
+  initPublisher,
+  initSession
+} = OT;
 
-var { requireNativeComponent } = require('react-native');
-// requireNativeComponent automatically resolves this to "RCTMapManager"
-var ReactPublisher = requireNativeComponent('ReactPublisher', null);
-var ReactSubscriber = requireNativeComponent('ReactSubscriber', null);
 var LoadingView = require('./views/loading_view.ios.js');
 var RoomInputView = require('./views/room_input_view.ios.js');
-
-console.log('hello');
 
 var rntb = React.createClass({
 
@@ -50,41 +52,44 @@ var rntb = React.createClass({
     fetch('https://meet.tokbox.com/' + room).then(data => {
       return data.json();
     }).then(room => {
-      OpenTokSessionManager.initSession(room.apiKey, room.sessionId, () => {
-        this.setState({ sessionState: 'INITIALIZED' });
-        OpenTokSessionManager.connect(room.token, err => {
-          if (err) {
-            this.setState({ sessionState: 'ERROR', loaded: true });
-          } else {
-            this.setState({ sessionState: 'CONNECTED', loaded: true });
-
-            OpenTokSessionManager.initPublisher(()=> {
-              this.setState({ publishing: true });
-              OpenTokSessionManager.publishToSession((err)=> {
-                this.setState({ sessionState: 'ATTEMPT PUBLISH' });
-              });
-            });
-          }
-        });
+      return initSession(room.apiKey, room.sessionId, room.token);
+    })
+      .then(session => {
+        this.setState({ sessionState: 'Connecting...' });
+        this.session = session;
+        session.on('streamCreated', this.streamCreated);
+        session.on('streamDestroyed', this.streamDestroyed);
+        return session.connect();
+      })
+      .then(() => {
+        this.setState({ sessionState: 'Getting camera...', loaded: true });
+        return initPublisher();
+      })
+      .then(() => {
+        this.setState({ sessionState: 'Publishing...' });
+        return this.session.publish();
+      })
+      .then(() => {
+        this.setState({ sessionState: 'Connected', publishing: true });
+      })
+      .catch(err => {
+        this.setState({ sessionState: 'Error! ' + err });
       });
-    });
-
-    OpenTokSessionManager.addEventListener('streamCreated', this.streamCreated);
-    OpenTokSessionManager.addEventListener('streamDestroyed', this.streamDestroyed);
-
-    OpenTokSessionManager.addEventListener('publisherStreamCreated', stream => {
-      this.setState({ sessionState: 'PUBLISHING' });
-    });
-    OpenTokSessionManager.addEventListener('publisherStreamDestroyed', function(stream) {
-      console.log('publisherStreamDestroyed', stream);
-    });
   },
 
+  session: null,
+
   streamCreated: function(stream) {
-    this.setState(function(state) {
-      state.streams.push(stream);
-      return state;
-    });
+    this.session.subscribe(stream.streamId)
+      .then(subscriberId => {
+        this.setState(function(state) {
+          state.streams.push({ subscriberId: subscriberId, streamId: stream.streamId });
+          return state;
+        });
+      })
+      .catch(err => {
+        alert(err);
+      });
   },
 
   streamDestroyed: function(stream) {
@@ -100,20 +105,21 @@ var rntb = React.createClass({
     if (!this.state.room) {
       return <RoomInputView onSubmit={(room) => this.connectToRoom(room)}/>;
     }
+
     if (!this.state.loaded) {
       return <LoadingView/>;
     }
-    var subscriberViews = this.state.streams.map(item => {
-      return <ReactSubscriber streamId={ item.streamId }
-                                   key={ item.streamId }
-                                 style={{ width: 320, height: 240, backgroundColor: 'blue' }}/>
-    });
 
     var publisher;
-
     if (this.state.publishing) {
-      publisher = <ReactPublisher style={{ width: 320, height: 240, backgroundColor: 'green' }} />;
+      publisher = <PublisherView style={{ width: 320, height: 240, backgroundColor: 'black' }} />;
     }
+
+    var subscriberViews = this.state.streams.map(item => {
+      return <SubscriberView subscriberId={ item.subscriberId }
+                                   key={ item.subscriberId }
+                                 style={{ width: 320, height: 240, backgroundColor: 'black' }}/>
+    });
 
     return (
       <View style={styles.container}>
@@ -122,7 +128,6 @@ var rntb = React.createClass({
         {publisher}
 
         {subscriberViews}
-
       </View>
     );
   }

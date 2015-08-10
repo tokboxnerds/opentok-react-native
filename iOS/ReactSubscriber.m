@@ -7,68 +7,39 @@
 //
 
 #import "RCTViewManager.h"
-#import <OpenTok/OpenTok.h>
 
 #import "EvilDirtyHack.h"
+#import "SubscriberHelper.h"
 
-
-
-@interface SuperAwesomeSubscriber: UIView<OTSubscriberDelegate> {
-  NSString *_streamId;
+@interface ReactSubscriberView: UIView {
+  NSString *_subscriberId;
   UIView *subscriberView;
 }
 
-@property (copy) NSString *streamId;
-@property OTSubscriber *subscriber;
+@property (copy) NSString *subscriberId;
 
 @end
 
-@implementation SuperAwesomeSubscriber
+@implementation ReactSubscriberView
 
-- (NSString*)streamId {
-  return _streamId;
+- (NSString*)subscriberId {
+  return _subscriberId;
 }
 
-- (void)setStreamId:(NSString *)streamId {
-  if ([_streamId isEqualToString:streamId]) {
+- (void)setSubscriberId:(NSString *)subscriberId {
+  if ([_subscriberId isEqualToString:subscriberId]) {
     return;
   }
-  NSLog(@"setStreamId %@", streamId);
-  _streamId = [streamId copy];
+  NSLog(@"setSubscriberId %@", subscriberId);
+  _subscriberId = [subscriberId copy];
   if (subscriberView) {
     [subscriberView removeFromSuperview];
   }
-  subscriberView = [self subscriberForStreamId:streamId].view;
-  NSLog(@"how big am I? %f x %f", self.frame.size.width, self.frame.size.height);
+  
+  subscriberView = [[EvilDirtyHack sharedEvilDirtyHack] viewForSubscriberId:subscriberId];
+
   subscriberView.frame = CGRectMake(0, 0, self.frame.size.width, self.frame.size.height);
   [self addSubview:subscriberView];
-}
-
-- (OTSubscriber*)subscriberForStreamId:(NSString*)streamId {
-  OTSession *session = [EvilDirtyHack sharedEvilDirtyHack].session;
-  OTStream *stream = session.streams[streamId];
-  NSLog(@"for streamId %@ we have %@", streamId, stream);
-  self.subscriber = [[OTSubscriber alloc] initWithStream:stream delegate:self];
-  
-  OTError *err = nil;
-  [session subscribe:self.subscriber error:&err];
-  
-  if (err) {
-    NSLog(@"FAIL! %@", err.localizedDescription);
-    return nil;
-  }
-  
-  return self.subscriber;
-}
-
-- (void)subscriberVideoDataReceived:(OTSubscriber *)subscriber {}
-
-- (void)subscriberDidConnectToStream:(OTSubscriberKit *)subscriber {
-  NSLog(@"subscriberDidConnectToStream hooray! %@", self);
-}
-
-- (void)subscriber:(OTSubscriberKit *)subscriber didFailWithError:(OTError *)error {
-  NSLog(@"subscriber:didFailWithError:%@ hooray!", error.localizedDescription);
 }
 
 -(void)layoutSubviews {
@@ -89,19 +60,11 @@
 
 RCT_EXPORT_MODULE()
 
-RCT_EXPORT_VIEW_PROPERTY(streamId, NSString)
+RCT_EXPORT_VIEW_PROPERTY(subscriberId, NSString)
 
 - (UIView *)view
 {
-  EvilDirtyHack *sharedState = [EvilDirtyHack sharedEvilDirtyHack];
-  
-//  OTStream *foo = sharedState.session.streams[self.streamId];
-  
-  
-//  OTSubscriber *foo = [[OTSubscriber alloc] initWithStream:stream delegate:self];
-//
-  
-  return [[SuperAwesomeSubscriber alloc] init];
+  return [[ReactSubscriberView alloc] init];
 }
 
 @end
