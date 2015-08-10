@@ -32,6 +32,7 @@ RCT_EXPORT_MODULE()
 
 RCT_EXPORT_METHOD(initSession:(NSString*)apiKey sessionId:(NSString*)sessionId callback:(RCTResponseSenderBlock)callback) {
   self.sharedState.session = [[OTSession alloc] initWithApiKey:apiKey sessionId:sessionId delegate:self];
+  [self.sharedState.session performSelector:@selector(setApiRootURL:) withObject:[NSURL URLWithString:@"https://anvil-tbdev.opentok.com"]];
   callback(@[]);
 }
 

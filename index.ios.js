@@ -19,10 +19,7 @@ var { requireNativeComponent } = require('react-native');
 // requireNativeComponent automatically resolves this to "RCTMapManager"
 var ReactPublisher = requireNativeComponent('ReactPublisher', null);
 var ReactSubscriber = requireNativeComponent('ReactSubscriber', null);
-
-var apiKey = 1127;
-var sessionId = '2_MX4xMTI3fn4xNDM5MTcwMjQ1Njgxfm1tUlpUVVNmVmEwbGJpM0p6YzRaUm1xWH5-';
-var token = 'T1==cGFydG5lcl9pZD0xMTI3JnNpZz05MDllZWM2NmQxY2M0YjUwMzhmNjQwZGQ0ZDBjYWZjZjMyM2U3YWU1OnNlc3Npb25faWQ9Ml9NWDR4TVRJM2ZuNHhORE01TVRjd01qUTFOamd4Zm0xdFVscFVWVk5tVm1Fd2JHSnBNMHA2WXpSYVVtMXhXSDUtJmNyZWF0ZV90aW1lPTE0MzkxNzAyNDYmbm9uY2U9MC4yNTg0MTU1NTEzOTA0OTg5JnJvbGU9bW9kZXJhdG9yJmV4cGlyZV90aW1lPTE0NDE3NjIyNDY=';
+var LoadingView = require('./views/loading_view.ios.js');
 
 console.log('hello');
 
@@ -33,30 +30,35 @@ var rntb = React.createClass({
       sessionState: 'DISCONNECTED',
       streams: [],
       publishing: false,
+      loaded: false
     };
   },
 
   componentDidMount: function() {
-    OpenTokSessionManager.initSession(apiKey, sessionId, () => {
-      this.setState({ sessionState: 'INITIALIZED' });
+    // Fetch from meet.tokbox.com
+    fetch('https://meet.tokbox.com/test').then(data => {
+      return data.json();
+    }).then(room => {
+      console.log('got room', room.apiKey, room.sessionId);
+      OpenTokSessionManager.initSession(room.apiKey, room.sessionId, () => {
+        this.setState({ sessionState: 'INITIALIZED' });
+        console.log('token: ', room.token);
+        OpenTokSessionManager.connect(room.token, err => {
+          if (err) {
+            this.setState({ sessionState: 'ERROR', loaded: true });
+          } else {
+            this.setState({ sessionState: 'CONNECTED', loaded: true });
 
-      OpenTokSessionManager.connect(token, err => {
-        if (err) {
-          this.setState({ sessionState: 'ERROR' });
-        } else {
-          this.setState({ sessionState: 'CONNECTED' });
-
-          OpenTokSessionManager.initPublisher(()=> {
-            this.setState({ publishing: true });
-            OpenTokSessionManager.publishToSession((err)=> {
-              this.setState({ sessionState: 'ATTEMPT PUBLISH' });
+            OpenTokSessionManager.initPublisher(()=> {
+              this.setState({ publishing: true });
+              OpenTokSessionManager.publishToSession((err)=> {
+                this.setState({ sessionState: 'ATTEMPT PUBLISH' });
+              });
             });
-          });
-        }
+          }
+        });
       });
-      // hooray!
     });
-
 
     OpenTokSessionManager.addEventListener('streamCreated', this.streamCreated);
     OpenTokSessionManager.addEventListener('streamDestroyed', this.streamDestroyed);
@@ -86,7 +88,9 @@ var rntb = React.createClass({
   },
 
   render: function() {
-
+    if (!this.state.loaded) {
+      return <LoadingView/>;
+    }
     var subscriberViews = this.state.streams.map(item => {
       return <ReactSubscriber streamId={ item.streamId }
                                    key={ item.streamId }
