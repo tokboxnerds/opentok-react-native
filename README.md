@@ -9,6 +9,8 @@ To give it a try:
 4. Open `rtnb.xcworkspace`
 5. Run (use a simulator)
 
+[cocoapods]: https://guides.cocoapods.org/using/getting-started.html#getting-started
+
 Things to watch out for:
 
 1. react-native expects to be able to run a server on port `8081` - watch out for that failing to
@@ -23,4 +25,4 @@ To make a build that will run on your device without being able to connect to yo
 2. If you've commented out the line ```jsCodeLocation = [[NSBundle mainBundle] URLForResource:@"main" withExtension:@"jsbundle"];```
    now is the time to uncomment it.
 3. Build & Run on a device to make sure rntb launch correctly in this build mode.
-4. Archive, and then export to distribute via your desired mechanism. 
+4. Archive, and then export to distribute via your desired mechanism.
