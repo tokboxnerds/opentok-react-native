@@ -9,12 +9,15 @@
 #import <Foundation/Foundation.h>
 
 @class OTSession;
+@class OTPublisher;
 
 @interface EvilDirtyHack : NSObject
 
 @property (nonatomic) OTSession *session;
-@property (strong, nonatomic) OTPublisher *publisher;
+@property (nonatomic) OTPublisher *publisher;
+@property (nonatomic) NSMutableDictionary *subscriberHelpers;
 
 +(instancetype)sharedEvilDirtyHack;
+- (UIView*)viewForSubscriberId:(NSString*)subscriberId;
 
 @end

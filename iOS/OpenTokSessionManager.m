@@ -11,6 +11,7 @@
 #import "EvilDirtyHack.h"
 #import "RCTBridgeModule.h"
 #import "RCTEventDispatcher.h"
+#import "SubscriberHelper.h"
 
 @interface OpenTokSessionManager : NSObject <RCTBridgeModule, OTSessionDelegate, OTPublisherDelegate>
 
@@ -66,6 +67,31 @@ RCT_EXPORT_METHOD(publishToSession:(RCTResponseSenderBlock)callback) {
   }
 }
 
+
+RCT_EXPORT_METHOD(subscribeToStream:(NSString*)streamId callback:(RCTResponseSenderBlock)callback) {
+  SubscriberHelper *helper = [[SubscriberHelper alloc] init];
+  helper.completionHandler = callback;
+  
+  OTSession *session = [EvilDirtyHack sharedEvilDirtyHack].session;
+  OTStream *stream = session.streams[streamId];
+
+  [helper subscribeToStream:stream inSession:session];
+  
+  self.sharedState.subscriberHelpers[helper.uuid] = helper;
+}
+
+RCT_EXPORT_METHOD(unsubscribe:(NSString*)subscriberId callback:(RCTResponseSenderBlock)callback) {
+  SubscriberHelper *helper = self.sharedState.subscriberHelpers[subscriberId];
+  OTError *err = nil;
+  [self.sharedState.session unsubscribe:helper.subscriber error:&err];
+  if (err) {
+    callback(@[err.localizedDescription]);
+  } else {
+    [self.sharedState.subscriberHelpers removeObjectForKey:subscriberId];
+    callback(@[]);
+  }
+}
+
 -(void)publisher:(OTPublisherKit *)publisher streamCreated:(OTStream *)stream {
   NSLog(@"publisher:streamCreated:");
   [self.bridge.eventDispatcher sendDeviceEventWithName:@"publisherStreamCreated" body:@{ @"streamId": stream.streamId }];
@@ -94,6 +120,12 @@ RCT_EXPORT_METHOD(publishToSession:(RCTResponseSenderBlock)callback) {
 }
 
 -(void)session:(OTSession *)session streamDestroyed:(OTStream *)stream {
+  [self.sharedState.subscriberHelpers.allValues enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+    SubscriberHelper *helper = obj;
+    if ([helper.subscriber.stream.streamId isEqualToString:stream.streamId]) {
+
+    }
+  }];
   [self.bridge.eventDispatcher sendDeviceEventWithName:@"streamDestroyed" body:@{ @"streamId": stream.streamId }];
 }
 

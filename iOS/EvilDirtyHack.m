@@ -9,6 +9,7 @@
 
 #import <OpenTok/OpenTok.h>
 #import "EvilDirtyHack.h"
+#import "SubscriberHelper.h"
 
 @implementation EvilDirtyHack
 
@@ -20,9 +21,17 @@
   });
   return hack;
 }
-//
-//- (OTSubscriber*)subscriberForStream:(NSString*)stringId {
-//  OTSubscriber *subscrber = [OTSubscriber ]
-//}
+
+- (instancetype)init {
+  if (self = [super init]) {
+    self.subscriberHelpers = [NSMutableDictionary dictionary];
+  }
+  return self;
+}
+
+- (UIView*)viewForSubscriberId:(NSString*)subscriberId {
+  SubscriberHelper *helper = self.subscriberHelpers[subscriberId];
+  return helper.subscriber.view;
+}
 
 @end

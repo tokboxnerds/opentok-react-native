@@ -42,6 +42,7 @@
 		CD9CAF3A1B783189003F9790 /* OpenTokSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CD9CAF391B783189003F9790 /* OpenTokSessionManager.m */; };
 		CD9CAF3E1B783AEE003F9790 /* EvilDirtyHack.m in Sources */ = {isa = PBXBuildFile; fileRef = CD9CAF3D1B783AEE003F9790 /* EvilDirtyHack.m */; };
 		CD9CAF401B78583B003F9790 /* ReactSubscriber.m in Sources */ = {isa = PBXBuildFile; fileRef = CD9CAF3F1B78583B003F9790 /* ReactSubscriber.m */; };
+		CDAEF1D41B786F3700BF410C /* SubscriberHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = CDAEF1D31B786F3700BF410C /* SubscriberHelper.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -167,6 +168,8 @@
 		CD9CAF3C1B783AEE003F9790 /* EvilDirtyHack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EvilDirtyHack.h; path = iOS/EvilDirtyHack.h; sourceTree = "<group>"; };
 		CD9CAF3D1B783AEE003F9790 /* EvilDirtyHack.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EvilDirtyHack.m; path = iOS/EvilDirtyHack.m; sourceTree = "<group>"; };
 		CD9CAF3F1B78583B003F9790 /* ReactSubscriber.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ReactSubscriber.m; path = iOS/ReactSubscriber.m; sourceTree = "<group>"; };
+		CDAEF1D21B786F3700BF410C /* SubscriberHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SubscriberHelper.h; path = iOS/SubscriberHelper.h; sourceTree = "<group>"; };
+		CDAEF1D31B786F3700BF410C /* SubscriberHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SubscriberHelper.m; path = iOS/SubscriberHelper.m; sourceTree = "<group>"; };
 		EFF2FB87E745C3C58E41FC2D /* libPods-rntb.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-rntb.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -301,6 +304,8 @@
 				CD9CAF391B783189003F9790 /* OpenTokSessionManager.m */,
 				CD9CAF3C1B783AEE003F9790 /* EvilDirtyHack.h */,
 				CD9CAF3D1B783AEE003F9790 /* EvilDirtyHack.m */,
+				CDAEF1D21B786F3700BF410C /* SubscriberHelper.h */,
+				CDAEF1D31B786F3700BF410C /* SubscriberHelper.m */,
 			);
 			name = rntb;
 			sourceTree = "<group>";
@@ -658,6 +663,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CDAEF1D41B786F3700BF410C /* SubscriberHelper.m in Sources */,
 				13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */,
 				CD9CAF3E1B783AEE003F9790 /* EvilDirtyHack.m in Sources */,
 				CD9CAF3A1B783189003F9790 /* OpenTokSessionManager.m in Sources */,
