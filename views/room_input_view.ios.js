@@ -3,7 +3,8 @@ var {
   TextInput,
   StyleSheet,
   View,
-  Image
+  Image,
+  LayoutAnimation
 } = React;
 
 var KeyboardEvents = require('react-native-keyboardevents');
@@ -40,6 +41,13 @@ var RoomInputView = React.createClass({
   componentDidMount: function () {
     KeyboardEventEmitter.on(KeyboardEvents.KeyboardWillShowEvent, this.updateKeybardSpace);
     KeyboardEventEmitter.on(KeyboardEvents.KeyboardWillHideEvent, this.resetKeyboardSpace);
+    LayoutAnimation.configureNext(
+      LayoutAnimation.create(
+        250,
+        LayoutAnimation.Types.easeInEaseOut,
+        LayoutAnimation.Properties.opacity
+      )
+    );
   },
 
   componentWillUnmount: function () {
@@ -48,10 +56,25 @@ var RoomInputView = React.createClass({
   },
 
   updateKeybardSpace: function(frames) {
+    console.log('updateKeyboardSpace', frames.duration);
+    LayoutAnimation.configureNext(
+      LayoutAnimation.create(
+        frames.duration * 1000,
+        LayoutAnimation.Types.easeInEaseOut,
+        LayoutAnimation.Properties.opacity
+      )
+    );
     this.setState({ keyboardSpace: frames.end.height });
   },
 
-  resetKeyboardSpace: function() {
+  resetKeyboardSpace: function(frames) {
+  LayoutAnimation.configureNext(
+    LayoutAnimation.create(
+      frames.duration * 1000,
+      LayoutAnimation.Types.easeInEaseOut,
+      LayoutAnimation.Properties.opacity
+    )
+  );
     this.setState({ keyboardSpace: 0 });
   },
 
