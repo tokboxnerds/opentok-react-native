@@ -70,6 +70,10 @@ var OpenTokSessionManager = {
   setPublisherCameraPosition: promisify(NativeOTSessionManager.setPublisherCameraPosition),
   publisherCameraPosition:    promisify(NativeOTSessionManager.publisherCameraPosition),
 
+  setSubscribeToVideo: promisify(NativeOTSessionManager.setSubscribeToVideo),
+  setSubscribeToAudio: promisify(NativeOTSessionManager.setSubscribeToAudio),
+  unsubscribe:         promisify(NativeOTSessionManager.unsubscribe),
+
 };
 
 console.log('setPublisherCameraPosition is ', NativeOTSessionManager.setPublisherCameraPosition);

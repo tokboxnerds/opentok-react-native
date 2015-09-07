@@ -182,6 +182,30 @@ RCT_EXPORT_METHOD(unsubscribe:(NSString*)subscriberId callback:(RCTResponseSende
   }
 }
 
+RCT_EXPORT_METHOD(setSubscribeToVideo:(BOOL)subscribeToVideo forSubscriber:(NSString*)subscriberId callback:(RCTResponseSenderBlock)callback) {
+  SubscriberHelper *helper = self.sharedState.subscriberHelpers[subscriberId];
+  
+  if (helper == nil) {
+    callback(@[@"Subscriber not found."]);
+    return;
+  }
+  
+  helper.subscriber.subscribeToVideo = subscribeToVideo;
+  callback(@[]);
+}
+
+RCT_EXPORT_METHOD(setSubscribeToAudio:(BOOL)subscribeToAudio forSubscriber:(NSString*)subscriberId callback:(RCTResponseSenderBlock)callback) {
+  SubscriberHelper *helper = self.sharedState.subscriberHelpers[subscriberId];
+  
+  if (helper == nil) {
+    callback(@[@"Subscriber not found."]);
+    return;
+  }
+  
+  helper.subscriber.subscribeToAudio = subscribeToAudio;
+  callback(@[]);
+}
+
 // TODO: subscribeToVideo`, `subscribeToAudio
 
 #pragma mark - OTSessionDelegate methods

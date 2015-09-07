@@ -37,7 +37,11 @@ module.exports = function(apiKey, sessionId, token) {
         setPublishVideo:            OpenTokSessionManager.setPublishVideo,
         setPublishAudio:            OpenTokSessionManager.setPublishAudio,
         setPublisherCameraPosition: OpenTokSessionManager.setPublisherCameraPosition,
-        publisherCameraPosition:    OpenTokSessionManager.publisherCameraPosition
+        publisherCameraPosition:    OpenTokSessionManager.publisherCameraPosition,
+
+        setSubscribeToVideo: OpenTokSessionManager.setSubscribeToVideo,
+        setSubscribeToAudio: OpenTokSessionManager.setSubscribeToAudio,
+        unsubscribe: OpenTokSessionManager.unsubscribe,
       };
 
       console.log('otsm.setPublisherCameraPosition = ', session.setPublisherCameraPosition);

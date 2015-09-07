@@ -129,9 +129,30 @@ var rntb = React.createClass({
     }
 
     var subscriberViews = this.state.streams.map(item => {
-      return <SubscriberView subscriberId={ item.subscriberId }
+      var sub = <SubscriberView subscriberId={ item.subscriberId }
                                    key={ item.subscriberId }
-                                 style={{ width: 320, height: 240, backgroundColor: 'black' }}/>
+                                 style={{ width: 320, height: 240, backgroundColor: 'black' }}/>;
+      var setVideo = state => {
+        return () => this.session.setSubscribeToVideo(state, item.subscriberId);
+      };
+      var setAudio = state => {
+        return () => this.session.setSubscribeToAudio(state, item.subscriberId);
+      };
+      return (<View>
+        {sub}
+        <TouchableHighlight onPress={setVideo(true)}>
+          <Text>setSubscribeToVideo(true)</Text>
+        </TouchableHighlight>
+        <TouchableHighlight onPress={setVideo(false)}>
+          <Text>setSubscribeToVideo(false)</Text>
+        </TouchableHighlight>
+        <TouchableHighlight onPress={setAudio(true)}>
+          <Text>setSubscribeToAudio(true)</Text>
+        </TouchableHighlight>
+        <TouchableHighlight onPress={setAudio(false)}>
+          <Text>setSubscribeToAudio(false)</Text>
+        </TouchableHighlight>
+      </View>);
     });
 
     return (
