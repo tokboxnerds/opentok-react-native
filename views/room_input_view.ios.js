@@ -22,7 +22,8 @@ var styles = StyleSheet.create({
     height: 40,
     borderColor: 'gray',
     borderWidth: 1,
-    color: '#DCD9B5'
+    color: '#DCD9B5',
+    textAlign: 'center',
   }
 });
 
