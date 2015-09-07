@@ -55,6 +55,7 @@ var rntb = React.createClass({
       return initSession(room.apiKey, room.sessionId, room.token);
     })
       .then(session => {
+
         this.setState({ sessionState: 'Connecting...' });
         this.session = session;
         session.on('streamCreated', this.streamCreated);
@@ -66,6 +67,7 @@ var rntb = React.createClass({
         this.setState({ sessionState: 'Getting camera...', loaded: true });
         return initPublisher();
       })
+      .then(() => this.getCameraPosition())
       .then(() => {
         this.setState({ sessionState: 'Publishing...' });
         return this.session.publish();
@@ -134,16 +136,65 @@ var rntb = React.createClass({
 
     return (
       <View style={styles.container}>
-        <TouchableHighlight onPress={this.onPressLeaveRoom}>
-            <Text>Leave Room</Text>
-        </TouchableHighlight>
-        <Text>{this.state.sessionState}</Text>
+        <View>
+          <TouchableHighlight onPress={this.onPressLeaveRoom}>
+              <Text>Leave Room</Text>
+          </TouchableHighlight>
+          <TouchableHighlight onPress={this.onPressVideoOn}>
+              <Text>Publish Video On</Text>
+          </TouchableHighlight>
+          <TouchableHighlight onPress={this.onPressVideoOff}>
+              <Text>Publish Video Off</Text>
+          </TouchableHighlight>
+          <TouchableHighlight onPress={this.onPressAudioOn}>
+              <Text>Publish Audio On</Text>
+          </TouchableHighlight>
+          <TouchableHighlight onPress={this.onPressAudioOff}>
+              <Text>Publish Audio Off</Text>
+          </TouchableHighlight>
+          <TouchableHighlight onPress={this.onPressCameraPosition.bind(null, 'front')}>
+              <Text>Front</Text>
+          </TouchableHighlight>
+          <TouchableHighlight onPress={this.onPressCameraPosition.bind(null, 'back')}>
+              <Text>Back</Text>
+          </TouchableHighlight>
+        </View>
+        <Text>{this.state.sessionState} {this.state.cameraPosition}</Text>
 
         {publisher}
 
         {subscriberViews}
       </View>
     );
+  },
+
+  onPressAudioOn: function() {
+    this.session.setPublishAudio(true);
+  },
+
+  onPressAudioOff: function() {
+    this.session.setPublishAudio(false);
+  },
+
+  onPressVideoOn: function() {
+    this.session.setPublishVideo(true);
+  },
+
+  onPressVideoOff: function() {
+    this.session.setPublishVideo(false);
+  },
+
+  onPressCameraPosition: function(position) {
+    this.session.setPublisherCameraPosition(position)
+      .then(() => this.getCameraPosition())
+      .catch(err => {
+        alert(err);
+      });
+  },
+
+  getCameraPosition: function() {
+    return this.session.publisherCameraPosition()
+      .then(position => this.setState({ cameraPosition: position }));
   },
 
   onPressLeaveRoom: function() {

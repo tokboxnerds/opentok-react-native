@@ -89,7 +89,70 @@ RCT_EXPORT_METHOD(publishToSession:(RCTResponseSenderBlock)callback) {
   }
 }
 
-// TODO: publishVideo`, `publishAudio`, switchCamera
+RCT_EXPORT_METHOD(setPublishVideo:(BOOL)publishVideo callback:(RCTResponseSenderBlock)callback) {
+  if (self.sharedState.publisher == nil) {
+    callback(@[@"You cannot set publishVideo without publishing first."]);
+    return;
+  }
+  self.sharedState.publisher.publishVideo = publishVideo;
+  callback(@[]);
+}
+
+RCT_EXPORT_METHOD(setPublishAudio:(BOOL)publishAudio callback:(RCTResponseSenderBlock)callback) {
+  if (self.sharedState.publisher == nil) {
+    callback(@[@"You cannot set publishAudio without publishing first."]);
+    return;
+  }
+  self.sharedState.publisher.publishAudio = publishAudio;
+  callback(@[]);
+}
+
+RCT_EXPORT_METHOD(setPublisherCameraPosition:(NSString*)cameraPosition callback:(RCTResponseSenderBlock)callback) {
+  if (self.sharedState.publisher == nil) {
+    callback(@[@"You cannot set publishAudio without publishing first."]);
+    return;
+  }
+  
+  if ([cameraPosition isEqualToString:@"front"]) {
+    self.sharedState.publisher.cameraPosition = AVCaptureDevicePositionFront;
+    callback(@[]);
+    
+  } else if ([cameraPosition isEqualToString:@"back"]) {
+    self.sharedState.publisher.cameraPosition = AVCaptureDevicePositionBack;
+    callback(@[]);
+    
+  } else if ([cameraPosition isEqualToString:@"unspecified"]) {
+    self.sharedState.publisher.cameraPosition = AVCaptureDevicePositionUnspecified;
+    callback(@[]);
+    
+  } else {
+    callback(@[@"Unexpectedc camera position, use front, back or unspecified."]);
+  }
+}
+
+RCT_EXPORT_METHOD(publisherCameraPosition:(RCTResponseSenderBlock)callback) {
+  if (self.sharedState.publisher == nil) {
+    callback(@[@"You cannot set publishAudio without publishing first."]);
+    return;
+  }
+  
+  NSString *position;
+  switch (self.sharedState.publisher.cameraPosition) {
+    case AVCaptureDevicePositionBack:
+      position = @"back";
+      break;
+      
+    case AVCaptureDevicePositionFront:
+      position = @"front";
+      break;
+      
+    case AVCaptureDevicePositionUnspecified:
+      position = @"unspecified";
+      break;
+  }
+  
+  callback(@[NSNull.null, position]);
+}
 
 #pragma mark - Subscriber API for react
 
