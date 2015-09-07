@@ -38,7 +38,9 @@ var rntb = React.createClass({
       publishing: false,
       loaded: false,
       room: null,
-      orientation: 'PORTRAIT'
+      orientation: 'PORTRAIT',
+      publishingVideo: true,
+      publishingAudio: true
     };
   },
 
@@ -153,28 +155,30 @@ var rntb = React.createClass({
     var subscriberViews = this.state.streams.map(item => {
       var sub = <SubscriberView subscriberId={ item.subscriberId }
                   key={ item.subscriberId }
-                  style={{ width: dimensions.targetWidth, height: dimensions.targetHeight,
-                    backgroundColor: 'black' }}/>;
+                  style={ styles.subscriberView }/>;
       var setVideo = state => {
         return () => this.session.setSubscribeToVideo(state, item.subscriberId);
       };
       var setAudio = state => {
         return () => this.session.setSubscribeToAudio(state, item.subscriberId);
       };
-      return (<View>
+      return (<View style={[{ width: dimensions.targetWidth, height: dimensions.targetHeight },
+          styles.subscriberContainer]}>
         {sub}
-        <TouchableHighlight onPress={setVideo(true)}>
-          <Text>setSubscribeToVideo(true)</Text>
-        </TouchableHighlight>
-        <TouchableHighlight onPress={setVideo(false)}>
-          <Text>setSubscribeToVideo(false)</Text>
-        </TouchableHighlight>
-        <TouchableHighlight onPress={setAudio(true)}>
-          <Text>setSubscribeToAudio(true)</Text>
-        </TouchableHighlight>
-        <TouchableHighlight onPress={setAudio(false)}>
-          <Text>setSubscribeToAudio(false)</Text>
-        </TouchableHighlight>
+        <View style={ styles.subscriberButtons }>
+          <TouchableHighlight onPress={setVideo(true)}>
+            <Text>setSubscribeToVideo(true)</Text>
+          </TouchableHighlight>
+          <TouchableHighlight onPress={setVideo(false)}>
+            <Text>setSubscribeToVideo(false)</Text>
+          </TouchableHighlight>
+          <TouchableHighlight onPress={setAudio(true)}>
+            <Text>setSubscribeToAudio(true)</Text>
+          </TouchableHighlight>
+          <TouchableHighlight onPress={setAudio(false)}>
+            <Text>setSubscribeToAudio(false)</Text>
+          </TouchableHighlight>
+        </View>
       </View>);
     });
     var videoButton = this.state.publishingVideo ?
@@ -293,7 +297,25 @@ var styles = StyleSheet.create({
     right: 0,
     height: 50,
     flexDirection: 'row',
-    justifyContent: 'center'
+    justifyContent: 'center',
+    backgroundColor: 'rgba(0, 0, 0, 0)',
+    color: '#DCD9CD'
+  },
+  subscriberButtons: {
+    height: 50,
+    backgroundColor: 'rgba(0, 0, 0, 0)'
+  },
+  subscriberView: {
+    position: 'absolute',
+    top: 0,
+    right: 0,
+    left: 0,
+    bottom: 0
+  },
+  subscriberContainer: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center'
   }
 });
 
