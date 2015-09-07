@@ -18,6 +18,7 @@ var Dimensions = require('Dimensions');
 var Orientation = require('react-native-orientation');
 var OT = require('./src/index.ios.js');
 var {getBestDimensions} = require('./src/layout_container.ios.js');
+var Icon = require('react-native-vector-icons/Ionicons');
 
 var {
   PublisherView,
@@ -183,26 +184,26 @@ var rntb = React.createClass({
     });
     var videoButton = this.state.publishingVideo ?
       (<TouchableHighlight onPress={this.onPressVideoOff}>
-          <Text>Mute Video</Text>
+          <Icon name="ios-videocam" size={30} color="#DCD9CD"></Icon>
       </TouchableHighlight>) : (<TouchableHighlight onPress={this.onPressVideoOn}>
-          <Text>Unmute Video</Text>
+          <Icon name="ios-videocam-outline" size={30} color="#DCD9CD"></Icon>
       </TouchableHighlight>);
     var audioButton = !this.state.publishingAudio ? (<TouchableHighlight onPress={this.onPressAudioOn}>
-        <Text>Unmute</Text>
+        <Icon name="ios-mic-off" size={30} color="#DCD9CD"></Icon>
       </TouchableHighlight>) : (<TouchableHighlight onPress={this.onPressAudioOff}>
-          <Text>Mute</Text>
+        <Icon name="ios-mic" size={30} color="#DCD9CD"></Icon>
       </TouchableHighlight>);
     return (
       <View style={styles.container}>
         {subscriberViews}
         <View style={styles.bottomBar}>
           <TouchableHighlight onPress={this.onPressLeaveRoom}>
-              <Text>Leave Room</Text>
+            <Icon name="log-out" size={30} color="#DCD9CD"></Icon>
           </TouchableHighlight>
           {videoButton}
           {audioButton}
           <TouchableHighlight onPress={this.onPressCameraPosition.bind(null)}>
-              <Text>Camera</Text>
+            <Icon name="ios-reverse-camera" size={30} color="#DCD9CD"></Icon>
           </TouchableHighlight>
         </View>
         {publisher}
@@ -293,11 +294,11 @@ var styles = StyleSheet.create({
   bottomBar: {
     position: 'absolute',
     bottom: 0,
-    left: 0,
-    right: 0,
+    left: 20,
+    right: 20,
     height: 50,
     flexDirection: 'row',
-    justifyContent: 'center',
+    justifyContent: 'space-between',
     backgroundColor: 'rgba(0, 0, 0, 0)',
     color: '#DCD9CD'
   },
