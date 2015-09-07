@@ -18,6 +18,7 @@ var Dimensions = require('Dimensions');
 var Orientation = require('react-native-orientation');
 var OT = require('./src/index.ios.js');
 var {getBestDimensions} = require('./src/layout_container.ios.js');
+var Icon = require('react-native-vector-icons/Ionicons');
 
 var {
   PublisherView,
@@ -38,7 +39,9 @@ var rntb = React.createClass({
       publishing: false,
       loaded: false,
       room: null,
-      orientation: 'PORTRAIT'
+      orientation: 'PORTRAIT',
+      publishingVideo: true,
+      publishingAudio: true
     };
   },
 
@@ -153,52 +156,54 @@ var rntb = React.createClass({
     var subscriberViews = this.state.streams.map(item => {
       var sub = <SubscriberView subscriberId={ item.subscriberId }
                   key={ item.subscriberId }
-                  style={{ width: dimensions.targetWidth, height: dimensions.targetHeight,
-                    backgroundColor: 'black' }}/>;
+                  style={ styles.subscriberView }/>;
       var setVideo = state => {
         return () => this.session.setSubscribeToVideo(state, item.subscriberId);
       };
       var setAudio = state => {
         return () => this.session.setSubscribeToAudio(state, item.subscriberId);
       };
-      return (<View>
+      return (<View style={[{ width: dimensions.targetWidth, height: dimensions.targetHeight },
+          styles.subscriberContainer]}>
         {sub}
-        <TouchableHighlight onPress={setVideo(true)}>
-          <Text>setSubscribeToVideo(true)</Text>
-        </TouchableHighlight>
-        <TouchableHighlight onPress={setVideo(false)}>
-          <Text>setSubscribeToVideo(false)</Text>
-        </TouchableHighlight>
-        <TouchableHighlight onPress={setAudio(true)}>
-          <Text>setSubscribeToAudio(true)</Text>
-        </TouchableHighlight>
-        <TouchableHighlight onPress={setAudio(false)}>
-          <Text>setSubscribeToAudio(false)</Text>
-        </TouchableHighlight>
+        <View style={ styles.subscriberButtons }>
+          <TouchableHighlight onPress={setVideo(true)}>
+            <Text>setSubscribeToVideo(true)</Text>
+          </TouchableHighlight>
+          <TouchableHighlight onPress={setVideo(false)}>
+            <Text>setSubscribeToVideo(false)</Text>
+          </TouchableHighlight>
+          <TouchableHighlight onPress={setAudio(true)}>
+            <Text>setSubscribeToAudio(true)</Text>
+          </TouchableHighlight>
+          <TouchableHighlight onPress={setAudio(false)}>
+            <Text>setSubscribeToAudio(false)</Text>
+          </TouchableHighlight>
+        </View>
       </View>);
     });
     var videoButton = this.state.publishingVideo ?
       (<TouchableHighlight onPress={this.onPressVideoOff}>
-          <Text>Mute Video</Text>
+          <Icon name="ios-videocam" size={30} color="#DCD9CD"></Icon>
       </TouchableHighlight>) : (<TouchableHighlight onPress={this.onPressVideoOn}>
-          <Text>Unmute Video</Text>
+          <Icon name="ios-videocam-outline" size={30} color="#DCD9CD"></Icon>
       </TouchableHighlight>);
     var audioButton = !this.state.publishingAudio ? (<TouchableHighlight onPress={this.onPressAudioOn}>
-        <Text>Unmute</Text>
+        <Icon name="ios-mic-off" size={30} color="#DCD9CD"></Icon>
       </TouchableHighlight>) : (<TouchableHighlight onPress={this.onPressAudioOff}>
-          <Text>Mute</Text>
+        <Icon name="ios-mic" size={30} color="#DCD9CD"></Icon>
       </TouchableHighlight>);
     return (
       <View style={styles.container}>
         {subscriberViews}
         <View style={styles.bottomBar}>
           <TouchableHighlight onPress={this.onPressLeaveRoom}>
-              <Text>Leave Room</Text>
+            <Icon name="log-out" size={30} color="#DCD9CD"></Icon>
           </TouchableHighlight>
           {videoButton}
           {audioButton}
           <TouchableHighlight onPress={this.onPressCameraPosition.bind(null)}>
-              <Text>Camera</Text>
+            <Icon name="ios-reverse-camera" size={30} color="#DCD9CD"></Icon>
           </TouchableHighlight>
         </View>
         {publisher}
@@ -289,11 +294,29 @@ var styles = StyleSheet.create({
   bottomBar: {
     position: 'absolute',
     bottom: 0,
-    left: 0,
-    right: 0,
+    left: 20,
+    right: 20,
     height: 50,
     flexDirection: 'row',
-    justifyContent: 'center'
+    justifyContent: 'space-between',
+    backgroundColor: 'rgba(0, 0, 0, 0)',
+    color: '#DCD9CD'
+  },
+  subscriberButtons: {
+    height: 50,
+    backgroundColor: 'rgba(0, 0, 0, 0)'
+  },
+  subscriberView: {
+    position: 'absolute',
+    top: 0,
+    right: 0,
+    left: 0,
+    bottom: 0
+  },
+  subscriberContainer: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center'
   }
 });
 
