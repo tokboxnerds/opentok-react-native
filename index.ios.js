@@ -5,7 +5,6 @@
 'use strict';
 
 var x = new Promise(function(re,rj) {});
-
 var React = require('react-native');
 var {
   AppRegistry,
@@ -14,8 +13,10 @@ var {
   View,
   StatusBarIOS
 } = React;
-
+var Dimensions = require('Dimensions');
+var Orientation = require('react-native-orientation');
 var OT = require('./src/index.ios.js');
+var {getBestDimensions} = require('./src/layout_container.ios.js');
 
 var {
   PublisherView,
@@ -35,12 +36,19 @@ var rntb = React.createClass({
       streams: [],
       publishing: false,
       loaded: false,
-      room: null
+      room: null,
+      orientation: 'PORTRAIT'
     };
   },
 
   componentDidMount : function() {
     StatusBarIOS.setStyle('light-content');
+    Orientation.unlockAllOrientations();
+    Orientation.addOrientationListener(this._orientationDidChange);
+  },
+
+  componentWillUnmount: function () {
+    Orientation.removeOrientationListener(this._orientationDidChange);
   },
 
   connectToRoom: function(room) {
@@ -101,6 +109,13 @@ var rntb = React.createClass({
     });
   },
 
+  _orientationDidChange : function(orientation) {
+    this.setState({
+      orientation
+    });
+    console.log('orientationChanged ' + orientation);
+  },
+
   render: function() {
     if (!this.state.room) {
       return <RoomInputView onSubmit={(room) => this.connectToRoom(room)}/>;
@@ -112,22 +127,25 @@ var rntb = React.createClass({
 
     var publisher;
     if (this.state.publishing) {
-      publisher = <PublisherView style={{ width: 320, height: 240, backgroundColor: 'black' }} />;
+      publisher = <PublisherView style={ styles.publisher } />;
     }
 
-    var subscriberViews = this.state.streams.map(item => {
+    var {width, height} = Dimensions.get('window');
+    console.log(width + 'x' + height);
+    var portrait = this.state.orientation === 'PORTRAIT';
+    var dimensions = getBestDimensions(9/16, 4/2, this.state.streams.length, portrait ? width : height,
+      portrait ? height : width);
+
+    var subscriberViews = this.state.streams.map((item, index) => {
       return <SubscriberView subscriberId={ item.subscriberId }
-                                   key={ item.subscriberId }
-                                 style={{ width: 320, height: 240, backgroundColor: 'black' }}/>
+              key={ item.subscriberId }
+              style={{ width: dimensions.targetWidth, height: dimensions.targetHeight }}/>
     });
 
     return (
       <View style={styles.container}>
-        <Text>{this.state.sessionState}</Text>
-
-        {publisher}
-
         {subscriberViews}
+        {publisher}
       </View>
     );
   }
@@ -135,10 +153,11 @@ var rntb = React.createClass({
 
 var styles = StyleSheet.create({
   container: {
-    flex: 1,
+    flexDirection: 'row',
+    flexWrap: 'wrap',
     justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
+    flex: 1,
+    backgroundColor: '#262422'
   },
   welcome: {
     fontSize: 20,
@@ -150,6 +169,15 @@ var styles = StyleSheet.create({
     color: '#333333',
     marginBottom: 5,
   },
+  publisher: {
+    position: 'absolute',
+    top: 20,
+    right: 10,
+    width: 100,
+    height: 75,
+    backgroundColor: 'black'
+  }
 });
+
 
 AppRegistry.registerComponent('rntb', () => rntb);

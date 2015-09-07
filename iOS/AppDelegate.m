@@ -58,4 +58,21 @@
   return YES;
 }
 
+- (NSUInteger)application:(UIApplication *)application supportedInterfaceOrientationsForWindow:(UIWindow *)window {
+  switch (self.orientation) {
+    case 1:
+      return UIInterfaceOrientationMaskPortrait;
+      break;
+    case 2:
+      return UIInterfaceOrientationMaskLandscape;
+      break;
+    case 3:
+      return UIInterfaceOrientationMaskAllButUpsideDown;
+      break;
+    default:
+      return UIInterfaceOrientationMaskPortrait;
+      break;
+  }
+}
+
 @end
