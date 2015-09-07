@@ -6,6 +6,9 @@ var {
   Image
 } = React;
 
+var KeyboardEvents = require('react-native-keyboardevents');
+var KeyboardEventEmitter = KeyboardEvents.Emitter;
+
 var styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -28,6 +31,30 @@ var styles = StyleSheet.create({
 });
 
 var RoomInputView = React.createClass({
+  getInitialState: function() {
+    return {
+      keyboardSpace: 0
+    };
+  },
+
+  componentDidMount: function () {
+    KeyboardEventEmitter.on(KeyboardEvents.KeyboardWillShowEvent, this.updateKeybardSpace);
+    KeyboardEventEmitter.on(KeyboardEvents.KeyboardWillHideEvent, this.resetKeyboardSpace);
+  },
+
+  componentWillUnmount: function () {
+    KeyboardEventEmitter.off(KeyboardEvents.KeyboardWillShowEvent, this.updateKeybardSpace);
+    KeyboardEventEmitter.off(KeyboardEvents.KeyboardWillHideEvent, this.resetKeyboardSpace);
+  },
+
+  updateKeybardSpace: function(frames) {
+    this.setState({ keyboardSpace: frames.end.height });
+  },
+
+  resetKeyboardSpace: function() {
+    this.setState({ keyboardSpace: 0 });
+  },
+
   render: function() {
     return (
       <View style={styles.container}>
@@ -36,7 +63,9 @@ var RoomInputView = React.createClass({
         <TextInput style={styles.roomInput}
           placeholder = "room name"
           placeholderTextColor = '#DCD9B5'
+          autoFocus={true}
           onSubmitEditing={ (event) => this.props.onSubmit(event.nativeEvent.text) } />
+        <View style={{height: this.state.keyboardSpace}}></View>
       </View>
     );
   }

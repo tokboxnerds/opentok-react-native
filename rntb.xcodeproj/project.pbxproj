@@ -45,6 +45,7 @@
 		CD9CAF3E1B783AEE003F9790 /* EvilDirtyHack.m in Sources */ = {isa = PBXBuildFile; fileRef = CD9CAF3D1B783AEE003F9790 /* EvilDirtyHack.m */; };
 		CD9CAF401B78583B003F9790 /* ReactSubscriber.m in Sources */ = {isa = PBXBuildFile; fileRef = CD9CAF3F1B78583B003F9790 /* ReactSubscriber.m */; };
 		CDAEF1D41B786F3700BF410C /* SubscriberHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = CDAEF1D31B786F3700BF410C /* SubscriberHelper.m */; };
+		CDE312CB1B9D688A007D2D6D /* libRNKeyboardEvents.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CDE312CA1B9D686B007D2D6D /* libRNKeyboardEvents.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -125,6 +126,13 @@
 			remoteGlobalIDString = 58B5119B1A9E6C1200147676;
 			remoteInfo = RCTText;
 		};
+		CDE312C91B9D686B007D2D6D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CDE312C51B9D686B007D2D6D /* RNKeyboardEvents.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = F12AFB9B1ADAF8F800E0535D;
+			remoteInfo = RNKeyboardEvents;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
@@ -174,6 +182,7 @@
 		CD9CAF3F1B78583B003F9790 /* ReactSubscriber.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ReactSubscriber.m; path = iOS/ReactSubscriber.m; sourceTree = "<group>"; };
 		CDAEF1D21B786F3700BF410C /* SubscriberHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SubscriberHelper.h; path = iOS/SubscriberHelper.h; sourceTree = "<group>"; };
 		CDAEF1D31B786F3700BF410C /* SubscriberHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SubscriberHelper.m; path = iOS/SubscriberHelper.m; sourceTree = "<group>"; };
+		CDE312C51B9D686B007D2D6D /* RNKeyboardEvents.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RNKeyboardEvents.xcodeproj; path = "node_modules/react-native-keyboardevents/RNKeyboardEvents.xcodeproj"; sourceTree = "<group>"; };
 		EFF2FB87E745C3C58E41FC2D /* libPods-rntb.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-rntb.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -189,6 +198,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CDE312CB1B9D688A007D2D6D /* libRNKeyboardEvents.a in Frameworks */,
 				CD9CAF2A1B782D92003F9790 /* CoreTelephony.framework in Frameworks */,
 				CD9CAF2B1B782D92003F9790 /* Foundation.framework in Frameworks */,
 				CD9CAF2C1B782D92003F9790 /* GLKit.framework in Frameworks */,
@@ -333,6 +343,7 @@
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				CDE312C51B9D686B007D2D6D /* RNKeyboardEvents.xcodeproj */,
 				146833FF1AC3E56700842450 /* React.xcodeproj */,
 				00C302A71ABCB8CE00DB3ED1 /* RCTActionSheet.xcodeproj */,
 				00C302B51ABCB90400DB3ED1 /* RCTGeolocation.xcodeproj */,
@@ -400,6 +411,14 @@
 				EFF2FB87E745C3C58E41FC2D /* libPods-rntb.a */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		CDE312C61B9D686B007D2D6D /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				CDE312CA1B9D686B007D2D6D /* libRNKeyboardEvents.a */,
+			);
+			name = Products;
 			sourceTree = "<group>";
 		};
 		EE09CE5F1ACE4FA199BFD305 /* Pods */ = {
@@ -521,6 +540,10 @@
 					ProductGroup = 146834001AC3E56700842450 /* Products */;
 					ProjectRef = 146833FF1AC3E56700842450 /* React.xcodeproj */;
 				},
+				{
+					ProductGroup = CDE312C61B9D686B007D2D6D /* Products */;
+					ProjectRef = CDE312C51B9D686B007D2D6D /* RNKeyboardEvents.xcodeproj */;
+				},
 			);
 			projectRoot = "";
 			targets = (
@@ -599,6 +622,13 @@
 			fileType = archive.ar;
 			path = libRCTText.a;
 			remoteRef = 832341B41AAA6A8300B99B32 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		CDE312CA1B9D686B007D2D6D /* libRNKeyboardEvents.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libRNKeyboardEvents.a;
+			remoteRef = CDE312C91B9D686B007D2D6D /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
