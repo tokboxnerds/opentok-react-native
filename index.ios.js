@@ -12,7 +12,8 @@ var {
   Text,
   View,
   StatusBarIOS,
-  TouchableHighlight
+  TouchableHighlight,
+  LayoutAnimation
 } = React;
 var Dimensions = require('Dimensions');
 var Orientation = require('react-native-orientation');
@@ -97,6 +98,7 @@ var rntb = React.createClass({
   streamCreated: function(stream) {
     this.session.subscribe(stream.streamId)
       .then(subscriberId => {
+        LayoutAnimation.easeInEaseOut();
         this.setState(function(state) {
           state.streams.push({ subscriberId: subscriberId, streamId: stream.streamId });
           return state;
@@ -108,6 +110,7 @@ var rntb = React.createClass({
   },
 
   streamDestroyed: function(stream) {
+    LayoutAnimation.easeInEaseOut();
     this.setState(function(state) {
       state.streams = state.streams.filter(function(priorStream) {
         return priorStream.streamId != stream.streamId;
