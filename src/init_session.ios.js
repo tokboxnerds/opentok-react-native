@@ -18,6 +18,18 @@ module.exports = function(apiKey, sessionId, token) {
       });
     };
 
+    var disconnect = function() {
+      return new Promise(function(resolve, reject) {
+        OpenTokSessionManager.disconnect(err => {
+          if (err) {
+            reject(err);
+          } else {
+            resolve();
+          }
+        });
+      });
+    };
+
     var publish = function() {
       return new Promise(function(resolve, reject) {
         OpenTokSessionManager.publishToSession((err)=> {
@@ -55,6 +67,7 @@ module.exports = function(apiKey, sessionId, token) {
     OpenTokSessionManager.initSession(apiKey, sessionId, () => {
       session = {
         connect: connect,
+        disconnect: disconnect,
         publish: publish,
         subscribe: subscribe,
         on: OpenTokSessionManager.addEventListener,

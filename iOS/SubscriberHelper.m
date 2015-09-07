@@ -24,7 +24,7 @@
   [session subscribe:self.subscriber error:&err];
   
   if (err) {
-    NSLog(@"FAIL! %@", err.localizedDescription);
+    NSLog(@"SubscriberHelper %@ failed: %@", stream, err.localizedDescription);
     self.completionHandler(@[err.localizedDescription]);
     return;
   }

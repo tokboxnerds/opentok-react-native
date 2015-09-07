@@ -4,15 +4,15 @@
  */
 'use strict';
 
-var x = new Promise(function(re,rj) {});
-
 var React = require('react-native');
+
 var {
   AppRegistry,
   StyleSheet,
   Text,
   View,
-  StatusBarIOS
+  StatusBarIOS,
+  TouchableHighlight
 } = React;
 
 var OT = require('./src/index.ios.js');
@@ -59,6 +59,7 @@ var rntb = React.createClass({
         this.session = session;
         session.on('streamCreated', this.streamCreated);
         session.on('streamDestroyed', this.streamDestroyed);
+        session.on('sessionDidDisconnect', this.sessionDidDisconnect);
         return session.connect();
       })
       .then(() => {
@@ -101,6 +102,16 @@ var rntb = React.createClass({
     });
   },
 
+  sessionDidDisconnect: function() {
+    this.session.off('streamCreated', this.streamCreated);
+    this.session.off('streamDestroyed', this.streamDestroyed);
+    this.session.off('sessionDidDisconnect', this.sessionDidDisconnect);
+    this.session = null;
+    this.setState({
+      streams: []
+    });
+  },
+
   render: function() {
     if (!this.state.room) {
       return <RoomInputView onSubmit={(room) => this.connectToRoom(room)}/>;
@@ -123,6 +134,9 @@ var rntb = React.createClass({
 
     return (
       <View style={styles.container}>
+        <TouchableHighlight onPress={this.onPressLeaveRoom}>
+            <Text>Leave Room</Text>
+        </TouchableHighlight>
         <Text>{this.state.sessionState}</Text>
 
         {publisher}
@@ -130,6 +144,17 @@ var rntb = React.createClass({
         {subscriberViews}
       </View>
     );
+  },
+
+  onPressLeaveRoom: function() {
+    this.setState({ sessionState: 'Leaving...'});
+    this.session.disconnect()
+      .then(function() {
+        this.setState({ room: '' });
+      }.bind(this))
+      .catch(err => {
+        this.setState({ sessionState: 'Error! ' + err });
+      });
   }
 });
 

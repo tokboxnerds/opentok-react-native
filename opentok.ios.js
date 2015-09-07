@@ -43,6 +43,8 @@ var OpenTokSessionManager = {
 
   connect: NativeOpenTokSessionManager.connect,
 
+  disconnect: NativeOpenTokSessionManager.disconnect,
+
   initPublisher: NativeOpenTokSessionManager.initPublisher,
 
   publishToSession: NativeOpenTokSessionManager.publishToSession,
