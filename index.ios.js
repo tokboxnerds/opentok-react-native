@@ -166,23 +166,23 @@ var rntb = React.createClass({
       var setAudio = state => {
         return () => this.session.setSubscribeToAudio(state, item.subscriberId);
       };
+      // <View style={ styles.subscriberButtons }>
+      //   <TouchableHighlight onPress={setVideo(true)}>
+      //     <Text>setSubscribeToVideo(true)</Text>
+      //   </TouchableHighlight>
+      //   <TouchableHighlight onPress={setVideo(false)}>
+      //     <Text>setSubscribeToVideo(false)</Text>
+      //   </TouchableHighlight>
+      //   <TouchableHighlight onPress={setAudio(true)}>
+      //     <Text>setSubscribeToAudio(true)</Text>
+      //   </TouchableHighlight>
+      //   <TouchableHighlight onPress={setAudio(false)}>
+      //     <Text>setSubscribeToAudio(false)</Text>
+      //   </TouchableHighlight>
+      // </View>
       return (<View style={[{ width: dimensions.targetWidth, height: dimensions.targetHeight },
           styles.subscriberContainer]}>
         {sub}
-        <View style={ styles.subscriberButtons }>
-          <TouchableHighlight onPress={setVideo(true)}>
-            <Text>setSubscribeToVideo(true)</Text>
-          </TouchableHighlight>
-          <TouchableHighlight onPress={setVideo(false)}>
-            <Text>setSubscribeToVideo(false)</Text>
-          </TouchableHighlight>
-          <TouchableHighlight onPress={setAudio(true)}>
-            <Text>setSubscribeToAudio(true)</Text>
-          </TouchableHighlight>
-          <TouchableHighlight onPress={setAudio(false)}>
-            <Text>setSubscribeToAudio(false)</Text>
-          </TouchableHighlight>
-        </View>
       </View>);
     });
     var videoButton = this.state.publishingVideo ?
