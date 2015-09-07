@@ -3,64 +3,48 @@
 var OpenTokSessionManager = require('../opentok.ios.js');
 
 module.exports = function(apiKey, sessionId, token) {
-  return new Promise(function(resolve, reject) {
-    var session;
+  var session;
 
-    var connect = function(callback) {
+  var publish = function() {
+    OpenTokSessionManager.publishToSession()
+    .then(() => {
       return new Promise(function(resolve, reject) {
-        OpenTokSessionManager.connect(token, err => {
-          if (err) {
-            reject(err);
-          } else {
-            resolve();
-          }
+        var streamCreated, publishFailed;
+        streamCreated = session.on('publisherStreamCreated', stream => {
+          resolve(stream);
+          streamCreated.remove();
+          publishFailed.remove();
+        });
+        publishFailed = session.on('publisherDidFailWithError', error => {
+          reject(error);
+          streamCreated.remove();
+          publishFailed.remove();
         });
       });
-    };
-
-    var publish = function() {
-      return new Promise(function(resolve, reject) {
-        OpenTokSessionManager.publishToSession((err)=> {
-          if (err) {
-            reject(err);
-          } else {
-            var streamCreated, publishFailed;
-            streamCreated = session.on('publisherStreamCreated', stream => {
-              resolve(stream);
-              streamCreated.remove();
-              publishFailed.remove();
-            });
-            publishFailed = session.on('publisherDidFailWithError', error => {
-              reject(error);
-              streamCreated.remove();
-              publishFailed.remove();
-            })
-          }
-        });
-      });
-    };
-
-    var subscribe = function(streamId) {
-      return new Promise(function(resolve, reject) {
-        OpenTokSessionManager.subscribeToStream(streamId, (err, subscriberId)=> {
-          if (err) {
-            reject(err);
-          } else {
-            resolve(subscriberId);
-          }
-        });
-      });
-    }
-
-    OpenTokSessionManager.initSession(apiKey, sessionId, () => {
-      session = {
-        connect: connect,
-        publish: publish,
-        subscribe: subscribe,
-        on: OpenTokSessionManager.addEventListener,
-        off: OpenTokSessionManager.removeEventListener
-      };
-      resolve(session);
     });
-  });
+  };
+
+  return OpenTokSessionManager.initSession(apiKey, sessionId)
+    .then(()=> {
+      session = {
+        connect: OpenTokSessionManager.connect.bind(undefined, token),
+        disconnect: OpenTokSessionManager.disconnect,
+        publish: publish,
+        subscribe: OpenTokSessionManager.subscribeToStream,
+        on: OpenTokSessionManager.addEventListener,
+        off: OpenTokSessionManager.removeEventListener,
+
+        setPublishVideo:            OpenTokSessionManager.setPublishVideo,
+        setPublishAudio:            OpenTokSessionManager.setPublishAudio,
+        setPublisherCameraPosition: OpenTokSessionManager.setPublisherCameraPosition,
+        publisherCameraPosition:    OpenTokSessionManager.publisherCameraPosition,
+
+        setSubscribeToVideo: OpenTokSessionManager.setSubscribeToVideo,
+        setSubscribeToAudio: OpenTokSessionManager.setSubscribeToAudio,
+        unsubscribe: OpenTokSessionManager.unsubscribe,
+      };
+
+      console.log('otsm.setPublisherCameraPosition = ', session.setPublisherCameraPosition);
+      return session;
+    });
 };

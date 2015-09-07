@@ -8,9 +8,27 @@ var NativeModules = require('NativeModules');
 
 var { DeviceEventEmitter } = react;
 
-var NativeOpenTokSessionManager = NativeModules.OpenTokSessionManager;
+var NativeOTSessionManager = NativeModules.OpenTokSessionManager;
 
 var deviceEventHandlers = {};
+
+var promisify = function(fn, ctx) {
+  return function() {
+    var args = Array.prototype.slice.call(arguments);
+
+    console.log('promisify called with', arguments, args);
+    return new Promise(function(resolve, reject) {
+      fn.apply(ctx, args.concat([function(err, value) {
+        if (err) {
+          reject(err);
+        } else {
+          resolve(value);
+        }
+      }]));
+    });
+  };
+};
+
 
 var OpenTokSessionManager = {
 
@@ -39,15 +57,25 @@ var OpenTokSessionManager = {
     deviceEventHandlers[type][handler] = null;
   },
 
-  initSession: NativeOpenTokSessionManager.initSession,
+  initSession: promisify(NativeOTSessionManager.initSession),
+  connect:     promisify(NativeOTSessionManager.connect),
+  disconnect:  promisify(NativeOTSessionManager.disconnect),
 
-  connect: NativeOpenTokSessionManager.connect,
+  subscribeToStream: promisify(NativeOTSessionManager.subscribeToStream),
+  publishToSession:  promisify(NativeOTSessionManager.publishToSession),
 
-  initPublisher: NativeOpenTokSessionManager.initPublisher,
+  initPublisher:              promisify(NativeOTSessionManager.initPublisher),
+  setPublishVideo:            promisify(NativeOTSessionManager.setPublishVideo),
+  setPublishAudio:            promisify(NativeOTSessionManager.setPublishAudio),
+  setPublisherCameraPosition: promisify(NativeOTSessionManager.setPublisherCameraPosition),
+  publisherCameraPosition:    promisify(NativeOTSessionManager.publisherCameraPosition),
 
-  publishToSession: NativeOpenTokSessionManager.publishToSession,
+  setSubscribeToVideo: promisify(NativeOTSessionManager.setSubscribeToVideo),
+  setSubscribeToAudio: promisify(NativeOTSessionManager.setSubscribeToAudio),
+  unsubscribe:         promisify(NativeOTSessionManager.unsubscribe),
 
-  subscribeToStream: NativeOpenTokSessionManager.subscribeToStream,
 };
+
+console.log('setPublisherCameraPosition is ', NativeOTSessionManager.setPublisherCameraPosition);
 
 module.exports = OpenTokSessionManager;

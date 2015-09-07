@@ -4,14 +4,15 @@
  */
 'use strict';
 
-var x = new Promise(function(re,rj) {});
 var React = require('react-native');
+
 var {
   AppRegistry,
   StyleSheet,
   Text,
   View,
-  StatusBarIOS
+  StatusBarIOS,
+  TouchableHighlight
 } = React;
 var Dimensions = require('Dimensions');
 var Orientation = require('react-native-orientation');
@@ -63,16 +64,19 @@ var rntb = React.createClass({
       return initSession(room.apiKey, room.sessionId, room.token);
     })
       .then(session => {
+
         this.setState({ sessionState: 'Connecting...' });
         this.session = session;
         session.on('streamCreated', this.streamCreated);
         session.on('streamDestroyed', this.streamDestroyed);
+        session.on('sessionDidDisconnect', this.sessionDidDisconnect);
         return session.connect();
       })
       .then(() => {
         this.setState({ sessionState: 'Getting camera...', loaded: true });
         return initPublisher();
       })
+      .then(() => this.getCameraPosition())
       .then(() => {
         this.setState({ sessionState: 'Publishing...' });
         return this.session.publish();
@@ -116,6 +120,16 @@ var rntb = React.createClass({
     console.log('orientationChanged ' + orientation);
   },
 
+  sessionDidDisconnect: function() {
+    this.session.off('streamCreated', this.streamCreated);
+    this.session.off('streamDestroyed', this.streamDestroyed);
+    this.session.off('sessionDidDisconnect', this.sessionDidDisconnect);
+    this.session = null;
+    this.setState({
+      streams: []
+    });
+  },
+
   render: function() {
     if (!this.state.room) {
       return <RoomInputView onSubmit={(room) => this.connectToRoom(room)}/>;
@@ -136,18 +150,113 @@ var rntb = React.createClass({
     var dimensions = getBestDimensions(9/16, 4/2, this.state.streams.length, portrait ? width : height,
       portrait ? height : width);
 
-    var subscriberViews = this.state.streams.map((item, index) => {
-      return <SubscriberView subscriberId={ item.subscriberId }
-              key={ item.subscriberId }
-              style={{ width: dimensions.targetWidth, height: dimensions.targetHeight }}/>
+    var subscriberViews = this.state.streams.map(item => {
+      var sub = <SubscriberView subscriberId={ item.subscriberId }
+                  key={ item.subscriberId }
+                  style={{ width: dimensions.targetWidth, height: dimensions.targetHeight,
+                    backgroundColor: 'black' }}/>;
+      var setVideo = state => {
+        return () => this.session.setSubscribeToVideo(state, item.subscriberId);
+      };
+      var setAudio = state => {
+        return () => this.session.setSubscribeToAudio(state, item.subscriberId);
+      };
+      return (<View>
+        {sub}
+        <TouchableHighlight onPress={setVideo(true)}>
+          <Text>setSubscribeToVideo(true)</Text>
+        </TouchableHighlight>
+        <TouchableHighlight onPress={setVideo(false)}>
+          <Text>setSubscribeToVideo(false)</Text>
+        </TouchableHighlight>
+        <TouchableHighlight onPress={setAudio(true)}>
+          <Text>setSubscribeToAudio(true)</Text>
+        </TouchableHighlight>
+        <TouchableHighlight onPress={setAudio(false)}>
+          <Text>setSubscribeToAudio(false)</Text>
+        </TouchableHighlight>
+      </View>);
     });
-
+    var videoButton = this.state.publishingVideo ?
+      (<TouchableHighlight onPress={this.onPressVideoOff}>
+          <Text>Mute Video</Text>
+      </TouchableHighlight>) : (<TouchableHighlight onPress={this.onPressVideoOn}>
+          <Text>Unmute Video</Text>
+      </TouchableHighlight>);
+    var audioButton = !this.state.publishingAudio ? (<TouchableHighlight onPress={this.onPressAudioOn}>
+        <Text>Unmute</Text>
+      </TouchableHighlight>) : (<TouchableHighlight onPress={this.onPressAudioOff}>
+          <Text>Mute</Text>
+      </TouchableHighlight>);
     return (
       <View style={styles.container}>
         {subscriberViews}
+        <View style={styles.bottomBar}>
+          <TouchableHighlight onPress={this.onPressLeaveRoom}>
+              <Text>Leave Room</Text>
+          </TouchableHighlight>
+          {videoButton}
+          {audioButton}
+          <TouchableHighlight onPress={this.onPressCameraPosition.bind(null)}>
+              <Text>Camera</Text>
+          </TouchableHighlight>
+        </View>
         {publisher}
       </View>
     );
+  },
+
+  onPressAudioOn: function() {
+    this.session.setPublishAudio(true);
+    this.setState({
+      publishingAudio: true
+    });
+  },
+
+  onPressAudioOff: function() {
+    this.session.setPublishAudio(false);
+    this.setState({
+      publishingAudio: false
+    });
+  },
+
+  onPressVideoOn: function() {
+    this.session.setPublishVideo(true);
+    this.setState({
+      publishingVideo: true
+    });
+  },
+
+  onPressVideoOff: function() {
+    this.session.setPublishVideo(false);
+    this.setState({
+      publishingVideo: false
+    });
+  },
+
+  onPressCameraPosition: function() {
+    var position = this.state.cameraPosition === 'front' ? 'back' : 'front';
+    this.session.setPublisherCameraPosition(position)
+      .then(() => this.getCameraPosition())
+      .catch(err => {
+        alert(err);
+      });
+  },
+
+  getCameraPosition: function() {
+    return this.session.publisherCameraPosition()
+      .then(position => this.setState({ cameraPosition: position }));
+  },
+
+  onPressLeaveRoom: function() {
+    this.setState({ sessionState: 'Leaving...'});
+    this.session.disconnect()
+      .then(function() {
+        this.setState({ room: '' });
+      }.bind(this))
+      .catch(err => {
+        this.setState({ sessionState: 'Error! ' + err });
+      });
   }
 });
 
@@ -176,6 +285,15 @@ var styles = StyleSheet.create({
     width: 100,
     height: 75,
     backgroundColor: 'black'
+  },
+  bottomBar: {
+    position: 'absolute',
+    bottom: 0,
+    left: 0,
+    right: 0,
+    height: 50,
+    flexDirection: 'row',
+    justifyContent: 'center'
   }
 });
 
