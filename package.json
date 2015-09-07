@@ -8,6 +8,7 @@
   },
   "dependencies": {
     "react-native": "^0.8.0",
+    "react-native-keyboardevents": "^0.4.5",
     "react-native-orientation": "^1.6.0"
   }
 }
