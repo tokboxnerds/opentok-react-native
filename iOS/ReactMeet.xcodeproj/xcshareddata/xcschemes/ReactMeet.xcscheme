@@ -16,22 +16,22 @@
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
                BuildableName = "ReactMeet.app"
-               BlueprintName = "rntb"
-               ReferencedContainer = "container:rntb.xcodeproj">
+               BlueprintName = "ReactMeet"
+               ReferencedContainer = "container:ReactMeet.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
          <BuildActionEntry
             buildForTesting = "YES"
-            buildForRunning = "NO"
+            buildForRunning = "YES"
             buildForProfiling = "NO"
             buildForArchiving = "NO"
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "00E356ED1AD99517003FC87E"
-               BuildableName = "rntbTests.xctest"
-               BlueprintName = "rntbTests"
-               ReferencedContainer = "container:rntb.xcodeproj">
+               BuildableName = "ReactMeetTests.xctest"
+               BlueprintName = "ReactMeetTests"
+               ReferencedContainer = "container:ReactMeet.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -47,9 +47,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "00E356ED1AD99517003FC87E"
-               BuildableName = "rntbTests.xctest"
-               BlueprintName = "rntbTests"
-               ReferencedContainer = "container:rntb.xcodeproj">
+               BuildableName = "ReactMeetTests.xctest"
+               BlueprintName = "ReactMeetTests"
+               ReferencedContainer = "container:ReactMeet.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -58,8 +58,8 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
             BuildableName = "ReactMeet.app"
-            BlueprintName = "rntb"
-            ReferencedContainer = "container:rntb.xcodeproj">
+            BlueprintName = "ReactMeet"
+            ReferencedContainer = "container:ReactMeet.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </TestAction>
@@ -78,8 +78,8 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
             BuildableName = "ReactMeet.app"
-            BlueprintName = "rntb"
-            ReferencedContainer = "container:rntb.xcodeproj">
+            BlueprintName = "ReactMeet"
+            ReferencedContainer = "container:ReactMeet.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -97,8 +97,8 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
             BuildableName = "ReactMeet.app"
-            BlueprintName = "rntb"
-            ReferencedContainer = "container:rntb.xcodeproj">
+            BlueprintName = "ReactMeet"
+            ReferencedContainer = "container:ReactMeet.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

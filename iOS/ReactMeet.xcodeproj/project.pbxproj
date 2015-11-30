@@ -7,13 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		008F07F31AC5B25A0029DE68 /* main.jsbundle in Resources */ = {isa = PBXBuildFile; fileRef = 008F07F21AC5B25A0029DE68 /* main.jsbundle */; };
 		00C302E51ABCBA2D00DB3ED1 /* libRCTActionSheet.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302AC1ABCB8CE00DB3ED1 /* libRCTActionSheet.a */; };
 		00C302E71ABCBA2D00DB3ED1 /* libRCTGeolocation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302BA1ABCB90400DB3ED1 /* libRCTGeolocation.a */; };
 		00C302E81ABCBA2D00DB3ED1 /* libRCTImage.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302C01ABCB91800DB3ED1 /* libRCTImage.a */; };
 		00C302E91ABCBA2D00DB3ED1 /* libRCTNetwork.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302DC1ABCB9D200DB3ED1 /* libRCTNetwork.a */; };
 		00C302EA1ABCBA2D00DB3ED1 /* libRCTVibration.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302E41ABCB9EE00DB3ED1 /* libRCTVibration.a */; };
-		00E356F31AD99517003FC87E /* rntbTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* rntbTests.m */; };
+		00E356F31AD99517003FC87E /* ReactMeetTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* ReactMeetTests.m */; };
 		133E29F31AD74F7200F7D852 /* libRCTLinking.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 78C398B91ACF4ADC00677621 /* libRCTLinking.a */; };
 		139105C61AF99C1200B5F7CC /* libRCTSettings.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 139105C11AF99BAD00B5F7CC /* libRCTSettings.a */; };
 		139FDEF61B0652A700C62182 /* libRCTWebSocket.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 139FDEF41B06529B00C62182 /* libRCTWebSocket.a */; };
@@ -26,7 +25,7 @@
 		276C60C51B9D50C4006B9B35 /* Orientation.m in Sources */ = {isa = PBXBuildFile; fileRef = 276C60C41B9D50C4006B9B35 /* Orientation.m */; };
 		277205471B9D71D30029114A /* Ionicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 277205461B9D71D30029114A /* Ionicons.ttf */; };
 		832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 832341B51AAA6A8300B99B32 /* libRCTText.a */; };
-		8CB80344F2479E755C0CF225 /* libPods-rntb.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EFF2FB87E745C3C58E41FC2D /* libPods-rntb.a */; };
+		8CB80344F2479E755C0CF225 /* libPods-ReactMeet.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EFF2FB87E745C3C58E41FC2D /* libPods-ReactMeet.a */; };
 		CD9CAF191B782D2A003F9790 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD9CAF181B782D2A003F9790 /* AudioToolbox.framework */; };
 		CD9CAF1B1B782D32003F9790 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD9CAF1A1B782D32003F9790 /* AVFoundation.framework */; };
 		CD9CAF1D1B782D3A003F9790 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD9CAF1C1B782D3A003F9790 /* CoreGraphics.framework */; };
@@ -90,7 +89,7 @@
 			containerPortal = 83CBB9F71A601CBA00E9B192 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 13B07F861A680F5B00A75B9A;
-			remoteInfo = rntb;
+			remoteInfo = ReactMeet;
 		};
 		139105C01AF99BAD00B5F7CC /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -137,32 +136,32 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		008F07F21AC5B25A0029DE68 /* main.jsbundle */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = main.jsbundle; path = iOS/main.jsbundle; sourceTree = "<group>"; };
-		00C302A71ABCB8CE00DB3ED1 /* RCTActionSheet.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTActionSheet.xcodeproj; path = "node_modules/react-native/Libraries/ActionSheetIOS/RCTActionSheet.xcodeproj"; sourceTree = "<group>"; };
-		00C302B51ABCB90400DB3ED1 /* RCTGeolocation.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTGeolocation.xcodeproj; path = "node_modules/react-native/Libraries/Geolocation/RCTGeolocation.xcodeproj"; sourceTree = "<group>"; };
-		00C302BB1ABCB91800DB3ED1 /* RCTImage.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTImage.xcodeproj; path = "node_modules/react-native/Libraries/Image/RCTImage.xcodeproj"; sourceTree = "<group>"; };
-		00C302D31ABCB9D200DB3ED1 /* RCTNetwork.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTNetwork.xcodeproj; path = "node_modules/react-native/Libraries/Network/RCTNetwork.xcodeproj"; sourceTree = "<group>"; };
-		00C302DF1ABCB9EE00DB3ED1 /* RCTVibration.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTVibration.xcodeproj; path = "node_modules/react-native/Libraries/Vibration/RCTVibration.xcodeproj"; sourceTree = "<group>"; };
-		00E356EE1AD99517003FC87E /* rntbTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = rntbTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		008F07F21AC5B25A0029DE68 /* main.jsbundle */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = main.jsbundle; sourceTree = "<group>"; };
+		00C302A71ABCB8CE00DB3ED1 /* RCTActionSheet.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTActionSheet.xcodeproj; path = "../node_modules/react-native/Libraries/ActionSheetIOS/RCTActionSheet.xcodeproj"; sourceTree = "<group>"; };
+		00C302B51ABCB90400DB3ED1 /* RCTGeolocation.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTGeolocation.xcodeproj; path = "../node_modules/react-native/Libraries/Geolocation/RCTGeolocation.xcodeproj"; sourceTree = "<group>"; };
+		00C302BB1ABCB91800DB3ED1 /* RCTImage.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTImage.xcodeproj; path = "../node_modules/react-native/Libraries/Image/RCTImage.xcodeproj"; sourceTree = "<group>"; };
+		00C302D31ABCB9D200DB3ED1 /* RCTNetwork.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTNetwork.xcodeproj; path = "../node_modules/react-native/Libraries/Network/RCTNetwork.xcodeproj"; sourceTree = "<group>"; };
+		00C302DF1ABCB9EE00DB3ED1 /* RCTVibration.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTVibration.xcodeproj; path = "../node_modules/react-native/Libraries/Vibration/RCTVibration.xcodeproj"; sourceTree = "<group>"; };
+		00E356EE1AD99517003FC87E /* ReactMeetTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ReactMeetTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		00E356F11AD99517003FC87E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		00E356F21AD99517003FC87E /* rntbTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = rntbTests.m; sourceTree = "<group>"; };
-		139105B61AF99BAD00B5F7CC /* RCTSettings.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTSettings.xcodeproj; path = "node_modules/react-native/Libraries/Settings/RCTSettings.xcodeproj"; sourceTree = "<group>"; };
-		139FDEE61B06529A00C62182 /* RCTWebSocket.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTWebSocket.xcodeproj; path = "node_modules/react-native/Libraries/WebSocket/RCTWebSocket.xcodeproj"; sourceTree = "<group>"; };
+		00E356F21AD99517003FC87E /* ReactMeetTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ReactMeetTests.m; sourceTree = "<group>"; };
+		139105B61AF99BAD00B5F7CC /* RCTSettings.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTSettings.xcodeproj; path = "../node_modules/react-native/Libraries/Settings/RCTSettings.xcodeproj"; sourceTree = "<group>"; };
+		139FDEE61B06529A00C62182 /* RCTWebSocket.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTWebSocket.xcodeproj; path = "../node_modules/react-native/Libraries/WebSocket/RCTWebSocket.xcodeproj"; sourceTree = "<group>"; };
 		13B07F961A680F5B00A75B9A /* ReactMeet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ReactMeet.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = iOS/AppDelegate.h; sourceTree = "<group>"; };
-		13B07FB01A68108700A75B9A /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = iOS/AppDelegate.m; sourceTree = "<group>"; };
+		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = ReactMeet/AppDelegate.h; sourceTree = "<group>"; };
+		13B07FB01A68108700A75B9A /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = ReactMeet/AppDelegate.m; sourceTree = "<group>"; };
 		13B07FB21A68108700A75B9A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
-		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = iOS/Images.xcassets; sourceTree = "<group>"; };
-		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = iOS/Info.plist; sourceTree = "<group>"; };
-		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = iOS/main.m; sourceTree = "<group>"; };
-		146833FF1AC3E56700842450 /* React.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = React.xcodeproj; path = "node_modules/react-native/React/React.xcodeproj"; sourceTree = "<group>"; };
-		276C60B71B9D4C05006B9B35 /* RCTOrientation */ = {isa = PBXFileReference; lastKnownFileType = folder; name = RCTOrientation; path = "node_modules/react-native-orientation/RCTOrientation"; sourceTree = "<group>"; };
-		276C60C41B9D50C4006B9B35 /* Orientation.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = Orientation.m; path = "node_modules/react-native-orientation/RCTOrientation/Orientation.m"; sourceTree = "<group>"; };
-		277205461B9D71D30029114A /* Ionicons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = Ionicons.ttf; path = "node_modules/react-native-vector-icons/Fonts/Ionicons.ttf"; sourceTree = "<group>"; };
-		78C398B01ACF4ADC00677621 /* RCTLinking.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTLinking.xcodeproj; path = "node_modules/react-native/Libraries/LinkingIOS/RCTLinking.xcodeproj"; sourceTree = "<group>"; };
-		832341B01AAA6A8300B99B32 /* RCTText.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTText.xcodeproj; path = "node_modules/react-native/Libraries/Text/RCTText.xcodeproj"; sourceTree = "<group>"; };
-		AE8EE8D0F827F2B68E822989 /* Pods-rntb.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-rntb.release.xcconfig"; path = "Pods/Target Support Files/Pods-rntb/Pods-rntb.release.xcconfig"; sourceTree = "<group>"; };
-		AFDBD855D63DFF7A8F9C40DE /* Pods-rntb.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-rntb.debug.xcconfig"; path = "Pods/Target Support Files/Pods-rntb/Pods-rntb.debug.xcconfig"; sourceTree = "<group>"; };
+		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = ReactMeet/Images.xcassets; sourceTree = "<group>"; };
+		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = ReactMeet/Info.plist; sourceTree = "<group>"; };
+		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = ReactMeet/main.m; sourceTree = "<group>"; };
+		146833FF1AC3E56700842450 /* React.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = React.xcodeproj; path = "../node_modules/react-native/React/React.xcodeproj"; sourceTree = "<group>"; };
+		276C60B71B9D4C05006B9B35 /* RCTOrientation */ = {isa = PBXFileReference; lastKnownFileType = folder; name = RCTOrientation; path = "../node_modules/react-native-orientation/RCTOrientation"; sourceTree = "<group>"; };
+		276C60C41B9D50C4006B9B35 /* Orientation.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = Orientation.m; path = "../node_modules/react-native-orientation/RCTOrientation/Orientation.m"; sourceTree = "<group>"; };
+		277205461B9D71D30029114A /* Ionicons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = Ionicons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Ionicons.ttf"; sourceTree = "<group>"; };
+		78C398B01ACF4ADC00677621 /* RCTLinking.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTLinking.xcodeproj; path = "../node_modules/react-native/Libraries/LinkingIOS/RCTLinking.xcodeproj"; sourceTree = "<group>"; };
+		832341B01AAA6A8300B99B32 /* RCTText.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTText.xcodeproj; path = "../node_modules/react-native/Libraries/Text/RCTText.xcodeproj"; sourceTree = "<group>"; };
+		AE8EE8D0F827F2B68E822989 /* Pods-ReactMeet.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ReactMeet.release.xcconfig"; path = "Pods/Target Support Files/Pods-ReactMeet/Pods-ReactMeet.release.xcconfig"; sourceTree = "<group>"; };
+		AFDBD855D63DFF7A8F9C40DE /* Pods-ReactMeet.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ReactMeet.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ReactMeet/Pods-ReactMeet.debug.xcconfig"; sourceTree = "<group>"; };
 		CD9CAF181B782D2A003F9790 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		CD9CAF1A1B782D32003F9790 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		CD9CAF1C1B782D3A003F9790 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -177,15 +176,15 @@
 		CD9CAF271B782D92003F9790 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		CD9CAF281B782D92003F9790 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		CD9CAF291B782D92003F9790 /* VideoToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = VideoToolbox.framework; path = System/Library/Frameworks/VideoToolbox.framework; sourceTree = SDKROOT; };
-		CD9CAF361B782DF0003F9790 /* ReactPublisher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ReactPublisher.m; path = iOS/ReactPublisher.m; sourceTree = "<group>"; };
-		CD9CAF391B783189003F9790 /* OpenTokSessionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OpenTokSessionManager.m; path = iOS/OpenTokSessionManager.m; sourceTree = "<group>"; };
-		CD9CAF3C1B783AEE003F9790 /* EvilDirtyHack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EvilDirtyHack.h; path = iOS/EvilDirtyHack.h; sourceTree = "<group>"; };
-		CD9CAF3D1B783AEE003F9790 /* EvilDirtyHack.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EvilDirtyHack.m; path = iOS/EvilDirtyHack.m; sourceTree = "<group>"; };
-		CD9CAF3F1B78583B003F9790 /* ReactSubscriber.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ReactSubscriber.m; path = iOS/ReactSubscriber.m; sourceTree = "<group>"; };
-		CDAEF1D21B786F3700BF410C /* SubscriberHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SubscriberHelper.h; path = iOS/SubscriberHelper.h; sourceTree = "<group>"; };
-		CDAEF1D31B786F3700BF410C /* SubscriberHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SubscriberHelper.m; path = iOS/SubscriberHelper.m; sourceTree = "<group>"; };
-		CDE312C51B9D686B007D2D6D /* RNKeyboardEvents.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RNKeyboardEvents.xcodeproj; path = "node_modules/react-native-keyboardevents/RNKeyboardEvents.xcodeproj"; sourceTree = "<group>"; };
-		EFF2FB87E745C3C58E41FC2D /* libPods-rntb.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-rntb.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		CD9CAF361B782DF0003F9790 /* ReactPublisher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ReactPublisher.m; path = ReactMeet/ReactPublisher.m; sourceTree = "<group>"; };
+		CD9CAF391B783189003F9790 /* OpenTokSessionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OpenTokSessionManager.m; path = ReactMeet/OpenTokSessionManager.m; sourceTree = "<group>"; };
+		CD9CAF3C1B783AEE003F9790 /* EvilDirtyHack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EvilDirtyHack.h; path = ReactMeet/EvilDirtyHack.h; sourceTree = "<group>"; };
+		CD9CAF3D1B783AEE003F9790 /* EvilDirtyHack.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EvilDirtyHack.m; path = ReactMeet/EvilDirtyHack.m; sourceTree = "<group>"; };
+		CD9CAF3F1B78583B003F9790 /* ReactSubscriber.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ReactSubscriber.m; path = ReactMeet/ReactSubscriber.m; sourceTree = "<group>"; };
+		CDAEF1D21B786F3700BF410C /* SubscriberHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SubscriberHelper.h; path = ReactMeet/SubscriberHelper.h; sourceTree = "<group>"; };
+		CDAEF1D31B786F3700BF410C /* SubscriberHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SubscriberHelper.m; path = ReactMeet/SubscriberHelper.m; sourceTree = "<group>"; };
+		CDE312C51B9D686B007D2D6D /* RNKeyboardEvents.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RNKeyboardEvents.xcodeproj; path = "../node_modules/react-native-keyboardevents/RNKeyboardEvents.xcodeproj"; sourceTree = "<group>"; };
+		EFF2FB87E745C3C58E41FC2D /* libPods-ReactMeet.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ReactMeet.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -225,7 +224,7 @@
 				832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */,
 				00C302EA1ABCBA2D00DB3ED1 /* libRCTVibration.a in Frameworks */,
 				139FDEF61B0652A700C62182 /* libRCTWebSocket.a in Frameworks */,
-				8CB80344F2479E755C0CF225 /* libPods-rntb.a in Frameworks */,
+				8CB80344F2479E755C0CF225 /* libPods-ReactMeet.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -272,13 +271,13 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		00E356EF1AD99517003FC87E /* rntbTests */ = {
+		00E356EF1AD99517003FC87E /* ReactMeetTests */ = {
 			isa = PBXGroup;
 			children = (
-				00E356F21AD99517003FC87E /* rntbTests.m */,
+				00E356F21AD99517003FC87E /* ReactMeetTests.m */,
 				00E356F01AD99517003FC87E /* Supporting Files */,
 			);
-			path = rntbTests;
+			path = ReactMeetTests;
 			sourceTree = "<group>";
 		};
 		00E356F01AD99517003FC87E /* Supporting Files */ = {
@@ -305,7 +304,7 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		13B07FAE1A68108700A75B9A /* rntb */ = {
+		13B07FAE1A68108700A75B9A /* ReactMeet */ = {
 			isa = PBXGroup;
 			children = (
 				008F07F21AC5B25A0029DE68 /* main.jsbundle */,
@@ -323,7 +322,7 @@
 				CDAEF1D21B786F3700BF410C /* SubscriberHelper.h */,
 				CDAEF1D31B786F3700BF410C /* SubscriberHelper.m */,
 			);
-			name = rntb;
+			name = ReactMeet;
 			sourceTree = "<group>";
 		};
 		146834001AC3E56700842450 /* Products */ = {
@@ -375,9 +374,9 @@
 				276C60C41B9D50C4006B9B35 /* Orientation.m */,
 				276C60B71B9D4C05006B9B35 /* RCTOrientation */,
 				CD9CAF341B782DA4003F9790 /* Frameworks */,
-				13B07FAE1A68108700A75B9A /* rntb */,
+				13B07FAE1A68108700A75B9A /* ReactMeet */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
-				00E356EF1AD99517003FC87E /* rntbTests */,
+				00E356EF1AD99517003FC87E /* ReactMeetTests */,
 				83CBBA001A601CBA00E9B192 /* Products */,
 				EE09CE5F1ACE4FA199BFD305 /* Pods */,
 			);
@@ -389,7 +388,7 @@
 			isa = PBXGroup;
 			children = (
 				13B07F961A680F5B00A75B9A /* ReactMeet.app */,
-				00E356EE1AD99517003FC87E /* rntbTests.xctest */,
+				00E356EE1AD99517003FC87E /* ReactMeetTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -411,7 +410,7 @@
 				CD9CAF1C1B782D3A003F9790 /* CoreGraphics.framework */,
 				CD9CAF1A1B782D32003F9790 /* AVFoundation.framework */,
 				CD9CAF181B782D2A003F9790 /* AudioToolbox.framework */,
-				EFF2FB87E745C3C58E41FC2D /* libPods-rntb.a */,
+				EFF2FB87E745C3C58E41FC2D /* libPods-ReactMeet.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -427,8 +426,8 @@
 		EE09CE5F1ACE4FA199BFD305 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				AFDBD855D63DFF7A8F9C40DE /* Pods-rntb.debug.xcconfig */,
-				AE8EE8D0F827F2B68E822989 /* Pods-rntb.release.xcconfig */,
+				AFDBD855D63DFF7A8F9C40DE /* Pods-ReactMeet.debug.xcconfig */,
+				AE8EE8D0F827F2B68E822989 /* Pods-ReactMeet.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -436,9 +435,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		00E356ED1AD99517003FC87E /* rntbTests */ = {
+		00E356ED1AD99517003FC87E /* ReactMeetTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "rntbTests" */;
+			buildConfigurationList = 00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "ReactMeetTests" */;
 			buildPhases = (
 				00E356EA1AD99517003FC87E /* Sources */,
 				00E356EB1AD99517003FC87E /* Frameworks */,
@@ -449,26 +448,28 @@
 			dependencies = (
 				00E356F51AD99517003FC87E /* PBXTargetDependency */,
 			);
-			name = rntbTests;
-			productName = rntbTests;
-			productReference = 00E356EE1AD99517003FC87E /* rntbTests.xctest */;
+			name = ReactMeetTests;
+			productName = ReactMeetTests;
+			productReference = 00E356EE1AD99517003FC87E /* ReactMeetTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		13B07F861A680F5B00A75B9A /* rntb */ = {
+		13B07F861A680F5B00A75B9A /* ReactMeet */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "rntb" */;
+			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "ReactMeet" */;
 			buildPhases = (
 				F24CAD26E9F4777A95D729B0 /* Check Pods Manifest.lock */,
 				13B07F871A680F5B00A75B9A /* Sources */,
 				13B07F8C1A680F5B00A75B9A /* Frameworks */,
 				13B07F8E1A680F5B00A75B9A /* Resources */,
 				F8F5DFE3DDA120407640E60B /* Copy Pods Resources */,
+				00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */,
+				902CFD7D24718BE02990F430 /* Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
-			name = rntb;
+			name = ReactMeet;
 			productName = "Hello World";
 			productReference = 13B07F961A680F5B00A75B9A /* ReactMeet.app */;
 			productType = "com.apple.product-type.application";
@@ -491,7 +492,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "rntb" */;
+			buildConfigurationList = 83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "ReactMeet" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -550,8 +551,8 @@
 			);
 			projectRoot = "";
 			targets = (
-				13B07F861A680F5B00A75B9A /* rntb */,
-				00E356ED1AD99517003FC87E /* rntbTests */,
+				13B07F861A680F5B00A75B9A /* ReactMeet */,
+				00E356ED1AD99517003FC87E /* ReactMeetTests */,
 			);
 		};
 /* End PBXProject section */
@@ -649,7 +650,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				277205471B9D71D30029114A /* Ionicons.ttf in Resources */,
-				008F07F31AC5B25A0029DE68 /* main.jsbundle in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */,
 				276C60B81B9D4C05006B9B35 /* RCTOrientation in Resources */,
@@ -659,6 +659,35 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Bundle React Native code and images";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "../node_modules/react-native/packager/react-native-xcode.sh";
+		};
+		902CFD7D24718BE02990F430 /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ReactMeet/Pods-ReactMeet-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		F24CAD26E9F4777A95D729B0 /* Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -686,7 +715,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-rntb/Pods-rntb-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ReactMeet/Pods-ReactMeet-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -696,7 +725,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				00E356F31AD99517003FC87E /* rntbTests.m in Sources */,
+				00E356F31AD99517003FC87E /* ReactMeetTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -720,7 +749,7 @@
 /* Begin PBXTargetDependency section */
 		00E356F51AD99517003FC87E /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 13B07F861A680F5B00A75B9A /* rntb */;
+			target = 13B07F861A680F5B00A75B9A /* ReactMeet */;
 			targetProxy = 00E356F41AD99517003FC87E /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -732,7 +761,7 @@
 				13B07FB21A68108700A75B9A /* Base */,
 			);
 			name = LaunchScreen.xib;
-			path = iOS;
+			path = ReactMeet;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -750,11 +779,11 @@
 					"DEBUG=1",
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = rntbTests/Info.plist;
+				INFOPLIST_FILE = ReactMeetTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/rntb.app/rntb";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ReactMeet.app/ReactMeet";
 			};
 			name = Debug;
 		};
@@ -767,32 +796,29 @@
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = rntbTests/Info.plist;
+				INFOPLIST_FILE = ReactMeetTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/rntb.app/rntb";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ReactMeet.app/ReactMeet";
 			};
 			name = Release;
 		};
 		13B07F941A680F5B00A75B9A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = AFDBD855D63DFF7A8F9C40DE /* Pods-rntb.debug.xcconfig */;
+			baseConfigurationReference = AFDBD855D63DFF7A8F9C40DE /* Pods-ReactMeet.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)",
-				);
+				DEAD_CODE_STRIPPING = NO;
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
-					"$(SRCROOT)/node_modules/react-native/React/**",
+					"$(SRCROOT)/../node_modules/react-native/React/**",
 				);
-				INFOPLIST_FILE = iOS/Info.plist;
+				INFOPLIST_FILE = ReactMeet/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_LDFLAGS = "$(inherited) -ObjC";
 				PRODUCT_NAME = ReactMeet;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -800,7 +826,7 @@
 		};
 		13B07F951A680F5B00A75B9A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = AE8EE8D0F827F2B68E822989 /* Pods-rntb.release.xcconfig */;
+			baseConfigurationReference = AE8EE8D0F827F2B68E822989 /* Pods-ReactMeet.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -811,11 +837,12 @@
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
-					"$(SRCROOT)/node_modules/react-native/React/**",
+					"$(SRCROOT)/../node_modules/react-native/React/**",
 				);
-				INFOPLIST_FILE = iOS/Info.plist;
+				INFOPLIST_FILE = ReactMeet/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_LDFLAGS = "$(inherited) -ObjC";
 				PRODUCT_NAME = ReactMeet;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -858,7 +885,7 @@
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
-					"$(SRCROOT)/node_modules/react-native/React/**",
+					"$(SRCROOT)/../node_modules/react-native/React/**",
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
@@ -898,7 +925,7 @@
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
-					"$(SRCROOT)/node_modules/react-native/React/**",
+					"$(SRCROOT)/../node_modules/react-native/React/**",
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
@@ -910,7 +937,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "rntbTests" */ = {
+		00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "ReactMeetTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				00E356F61AD99517003FC87E /* Debug */,
@@ -919,7 +946,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "rntb" */ = {
+		13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "ReactMeet" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				13B07F941A680F5B00A75B9A /* Debug */,
@@ -928,7 +955,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "rntb" */ = {
+		83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "ReactMeet" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				83CBBA201A601CBA00E9B192 /* Debug */,
