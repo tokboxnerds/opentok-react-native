@@ -1,0 +1,31 @@
+{
+  "extends": ["opentok"],
+  "plugins": ["react"],
+  "ecmaFeatures": {
+    "arrowFunctions": true,
+    "binaryLiterals": true,
+    "blockBindings": true,
+    "classes": true,
+    "forOf": true,
+    "generators": true,
+    "objectLiteralShorthandMethods": true,
+    "objectLiteralShorthandProperties": true,
+    "destructuring": true,
+    "jsx": true,
+    "modules": true,
+    "templateStrings": true,
+  },
+  "rules": {
+    "one-var": 0,
+    "vars-on-top": 0,
+    "prefer-const": 2,
+    "no-var": 2,
+    "no-console": 0,
+    "dot-notation": 0,
+    "prefer-arrow-callback": 2,
+    "object-shorthand": 2,
+    "arrow-parens": [2, "as-needed"],
+    "arrow-spacing": 2,
+    "comma-dangle": [2, "always-multiline"]
+  }
+}

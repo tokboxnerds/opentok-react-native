@@ -4,7 +4,7 @@ var {
   StyleSheet,
   View,
   Image,
-  LayoutAnimation
+  LayoutAnimation,
 } = React;
 
 var KeyboardEvents = require('react-native-keyboardevents');
@@ -16,11 +16,11 @@ var styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#262422',
-    padding: 10
+    padding: 10,
   },
   logo: {
     width: 200,
-    height: 200
+    height: 200,
   },
   roomInput: {
     height: 40,
@@ -28,17 +28,18 @@ var styles = StyleSheet.create({
     borderWidth: 1,
     color: '#DCD9B5',
     textAlign: 'center',
-  }
+  },
 });
 
 var RoomInputView = React.createClass({
-  getInitialState: function() {
+
+  getInitialState() {
     return {
-      keyboardSpace: 0
+      keyboardSpace: 0,
     };
   },
 
-  componentDidMount: function () {
+  componentDidMount() {
     KeyboardEventEmitter.on(KeyboardEvents.KeyboardWillShowEvent, this.updateKeybardSpace);
     KeyboardEventEmitter.on(KeyboardEvents.KeyboardWillHideEvent, this.resetKeyboardSpace);
     LayoutAnimation.configureNext(
@@ -50,13 +51,13 @@ var RoomInputView = React.createClass({
     );
   },
 
-  componentWillUnmount: function () {
+  componentWillUnmount() {
     KeyboardEventEmitter.off(KeyboardEvents.KeyboardWillShowEvent, this.updateKeybardSpace);
     KeyboardEventEmitter.off(KeyboardEvents.KeyboardWillHideEvent, this.resetKeyboardSpace);
   },
 
-  updateKeybardSpace: function(frames) {
-    console.log('updateKeyboardSpace', frames.duration);
+  updateKeybardSpace(frames) {
+    console.log('updateKeyboardSpace', frames.duration, frames.end, frames.endCoordinates);
     if (!frames.end) {
       return;
     }
@@ -70,18 +71,18 @@ var RoomInputView = React.createClass({
     this.setState({ keyboardSpace: frames.end.height });
   },
 
-  resetKeyboardSpace: function(frames) {
-  LayoutAnimation.configureNext(
-    LayoutAnimation.create(
-      frames.duration * 1000,
-      LayoutAnimation.Types.easeInEaseOut,
-      LayoutAnimation.Properties.opacity
-    )
-  );
+  resetKeyboardSpace(frames) {
+    LayoutAnimation.configureNext(
+      LayoutAnimation.create(
+        frames.duration * 1000,
+        LayoutAnimation.Types.easeInEaseOut,
+        LayoutAnimation.Properties.opacity
+      )
+    );
     this.setState({ keyboardSpace: 0 });
   },
 
-  render: function() {
+  render() {
     return (
       <View style={styles.container}>
         <Image source={require('image!meet-logo')}
@@ -90,11 +91,11 @@ var RoomInputView = React.createClass({
           placeholder = "room name"
           placeholderTextColor = '#DCD9B5'
           autoFocus={true}
-          onSubmitEditing={ (event) => this.props.onSubmit(event.nativeEvent.text) } />
-        <View style={{height: this.state.keyboardSpace}}></View>
+          onSubmitEditing={ event => this.props.onSubmit(event.nativeEvent.text) } />
+        <View style={{ height: this.state.keyboardSpace }}></View>
       </View>
     );
-  }
+  },
 });
 
 module.exports = RoomInputView;

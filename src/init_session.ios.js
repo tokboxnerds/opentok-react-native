@@ -1,15 +1,13 @@
-'use strict';
+import OpenTokSessionManager from '../opentok.ios.js';
 
-var OpenTokSessionManager = require('../opentok.ios.js');
+export default function(apiKey, sessionId, token) {
+  let session;
 
-module.exports = function(apiKey, sessionId, token) {
-  var session;
-
-  var publish = function() {
+  const publish = function() {
     OpenTokSessionManager.publishToSession()
     .then(() => {
-      return new Promise(function(resolve, reject) {
-        var streamCreated, publishFailed;
+      return new Promise((resolve, reject) => {
+        let streamCreated, publishFailed;
         streamCreated = session.on('publisherStreamCreated', stream => {
           resolve(stream);
           streamCreated.remove();
@@ -25,19 +23,19 @@ module.exports = function(apiKey, sessionId, token) {
   };
 
   return OpenTokSessionManager.initSession(apiKey, sessionId)
-    .then(()=> {
+    .then(() => {
       session = {
         connect: OpenTokSessionManager.connect.bind(undefined, token),
         disconnect: OpenTokSessionManager.disconnect,
-        publish: publish,
+        publish,
         subscribe: OpenTokSessionManager.subscribeToStream,
         on: OpenTokSessionManager.addEventListener,
         off: OpenTokSessionManager.removeEventListener,
 
-        setPublishVideo:            OpenTokSessionManager.setPublishVideo,
-        setPublishAudio:            OpenTokSessionManager.setPublishAudio,
+        setPublishVideo: OpenTokSessionManager.setPublishVideo,
+        setPublishAudio: OpenTokSessionManager.setPublishAudio,
         setPublisherCameraPosition: OpenTokSessionManager.setPublisherCameraPosition,
-        publisherCameraPosition:    OpenTokSessionManager.publisherCameraPosition,
+        publisherCameraPosition: OpenTokSessionManager.publisherCameraPosition,
 
         setSubscribeToVideo: OpenTokSessionManager.setSubscribeToVideo,
         setSubscribeToAudio: OpenTokSessionManager.setSubscribeToAudio,
@@ -47,4 +45,4 @@ module.exports = function(apiKey, sessionId, token) {
       console.log('otsm.setPublisherCameraPosition = ', session.setPublisherCameraPosition);
       return session;
     });
-};
+}

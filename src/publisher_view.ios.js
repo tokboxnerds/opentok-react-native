@@ -1,7 +1,4 @@
-'use strict';
-
-var React = require('react-native');
-var { requireNativeComponent } = React;
+import React, { requireNativeComponent } from 'react-native';
 
 class PublisherView extends React.Component {
   render() {
@@ -12,6 +9,6 @@ class PublisherView extends React.Component {
 PublisherView.propTypes = {
 };
 
-var ReactPublisher = requireNativeComponent('ReactPublisher', PublisherView);
+const ReactPublisher = requireNativeComponent('ReactPublisher', PublisherView);
 
 module.exports = PublisherView;

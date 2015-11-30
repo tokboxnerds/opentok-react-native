@@ -1,13 +1,10 @@
-/*global require */
-
-var React = require('react-native');
-var {
+import React, {
   ActivityIndicatorIOS,
   StyleSheet,
-  View
-} = React;
+  View,
+} from 'react-native';
 
-var styles = StyleSheet.create({
+const styles = StyleSheet.create({
 
   activityContainer: {
     flex: 1,
@@ -24,17 +21,15 @@ var styles = StyleSheet.create({
 
 });
 
-var LoadingView = React.createClass({
+export default class LoadingView extends React.Component {
   render() {
     return (
       <View style={styles.activityContainer}>
         <ActivityIndicatorIOS
           animating={true}
-          style={[styles.activityIndicator, {height: 80}]}
+          style={[styles.activityIndicator, { height: 80 }]}
           size="large" />
       </View>
     );
   }
-});
-
-module.exports = LoadingView;
+}
