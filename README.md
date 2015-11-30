@@ -3,10 +3,10 @@
 To give it a try:
 
 0. Install [cocoapods][cocoapods] if you haven't already (`gem install cocoapods` should do)
-1. `pod install`
+1. In the iOS folder run `pod install`
 2. Install watchman (e.g. `brew install watchman`)
 3. Run `npm install` in the same directory as this readme.
-4. Open `rtnb.xcworkspace`
+4. Open `iOS/ReactMeet.xcworkspace`
 5. Run (use a simulator)
 
 [cocoapods]: https://guides.cocoapods.org/using/getting-started.html#getting-started

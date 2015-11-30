@@ -57,6 +57,9 @@ var RoomInputView = React.createClass({
 
   updateKeybardSpace: function(frames) {
     console.log('updateKeyboardSpace', frames.duration);
+    if (!frames.end) {
+      return;
+    }
     LayoutAnimation.configureNext(
       LayoutAnimation.create(
         frames.duration * 1000,

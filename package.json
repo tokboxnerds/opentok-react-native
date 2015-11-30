@@ -1,5 +1,5 @@
 {
-  "name": "rntb",
+  "name": "ReactMeet",
   "version": "0.0.1",
   "private": true,
   "scripts": {
@@ -7,9 +7,9 @@
     "build": "react-native bundle --minify"
   },
   "dependencies": {
-    "react-native": "^0.8.0",
+    "react-native": "^0.15.0",
     "react-native-keyboardevents": "^0.4.5",
-    "react-native-orientation": "^1.6.0",
-    "react-native-vector-icons": "^0.6.11"
+    "react-native-orientation": "^1.9.0",
+    "react-native-vector-icons": "^1.0.0"
   }
 }
