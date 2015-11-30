@@ -11,5 +11,10 @@
     "react-native-keyboardevents": "^0.4.5",
     "react-native-orientation": "^1.9.0",
     "react-native-vector-icons": "^1.0.0"
+  },
+  "devDependencies": {
+    "eslint": "^1.0.0",
+    "eslint-config-opentok": "^1.0.2",
+    "eslint-plugin-react": "^3.11.1"
   }
 }

@@ -1,23 +1,15 @@
-/*global require, fetch*/
-/*jshint -W097, esnext:true */
+import { DeviceEventEmitter } from 'react-native';
+const NativeModules = require('NativeModules');
 
-'use strict';
+const NativeOTSessionManager = NativeModules.OpenTokSessionManager;
+const deviceEventHandlers = {};
 
-var react = require('react-native');
-var NativeModules = require('NativeModules');
-
-var { DeviceEventEmitter } = react;
-
-var NativeOTSessionManager = NativeModules.OpenTokSessionManager;
-
-var deviceEventHandlers = {};
-
-var promisify = function(fn, ctx) {
+const promisify = function(fn, ctx) {
   return function() {
-    var args = Array.prototype.slice.call(arguments);
+    const args = Array.prototype.slice.call(arguments);
 
     console.log('promisify called with', arguments, args);
-    return new Promise(function(resolve, reject) {
+    return new Promise((resolve, reject) => {
       fn.apply(ctx, args.concat([function(err, value) {
         if (err) {
           reject(err);
@@ -30,25 +22,25 @@ var promisify = function(fn, ctx) {
 };
 
 
-var OpenTokSessionManager = {
+const OpenTokSessionManager = {
 
-  addEventListener: function(type, handler) {
+  addEventListener(type, handler) {
     if (!deviceEventHandlers[type]) {
       deviceEventHandlers[type] = {};
     }
     deviceEventHandlers[type][handler] = DeviceEventEmitter.addListener(
       type,
-      (event)=> handler(event)
+      event => handler(event)
     );
 
     return {
       remove() {
         OpenTokSessionManager.removeEventListener(type, handler);
-      }
+      },
     };
   },
 
-  removeEventListener: function(type, handler) {
+  removeEventListener(type, handler) {
     if (!deviceEventHandlers[type][handler]) {
       return;
     }
@@ -58,24 +50,22 @@ var OpenTokSessionManager = {
   },
 
   initSession: promisify(NativeOTSessionManager.initSession),
-  connect:     promisify(NativeOTSessionManager.connect),
-  disconnect:  promisify(NativeOTSessionManager.disconnect),
+  connect: promisify(NativeOTSessionManager.connect),
+  disconnect: promisify(NativeOTSessionManager.disconnect),
 
   subscribeToStream: promisify(NativeOTSessionManager.subscribeToStream),
-  publishToSession:  promisify(NativeOTSessionManager.publishToSession),
+  publishToSession: promisify(NativeOTSessionManager.publishToSession),
 
-  initPublisher:              promisify(NativeOTSessionManager.initPublisher),
-  setPublishVideo:            promisify(NativeOTSessionManager.setPublishVideo),
-  setPublishAudio:            promisify(NativeOTSessionManager.setPublishAudio),
+  initPublisher: promisify(NativeOTSessionManager.initPublisher),
+  setPublishVideo: promisify(NativeOTSessionManager.setPublishVideo),
+  setPublishAudio: promisify(NativeOTSessionManager.setPublishAudio),
   setPublisherCameraPosition: promisify(NativeOTSessionManager.setPublisherCameraPosition),
-  publisherCameraPosition:    promisify(NativeOTSessionManager.publisherCameraPosition),
+  publisherCameraPosition: promisify(NativeOTSessionManager.publisherCameraPosition),
 
   setSubscribeToVideo: promisify(NativeOTSessionManager.setSubscribeToVideo),
   setSubscribeToAudio: promisify(NativeOTSessionManager.setSubscribeToAudio),
-  unsubscribe:         promisify(NativeOTSessionManager.unsubscribe),
+  unsubscribe: promisify(NativeOTSessionManager.unsubscribe),
 
 };
 
-console.log('setPublisherCameraPosition is ', NativeOTSessionManager.setPublisherCameraPosition);
-
-module.exports = OpenTokSessionManager;
+export default OpenTokSessionManager;

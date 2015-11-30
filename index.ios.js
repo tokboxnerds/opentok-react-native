@@ -2,38 +2,88 @@
  * Sample React Native App
  * https://github.com/facebook/react-native
  */
-'use strict';
 
-var React = require('react-native');
-
-var {
+import React, {
   AppRegistry,
   StyleSheet,
-  Text,
   View,
   StatusBarIOS,
   TouchableHighlight,
-  LayoutAnimation
-} = React;
-var Dimensions = require('Dimensions');
-var Orientation = require('react-native-orientation');
-var OT = require('./src/index.ios.js');
-var {getBestDimensions} = require('./src/layout_container.ios.js');
-var Icon = require('react-native-vector-icons/Ionicons');
+  LayoutAnimation,
+} from 'react-native';
 
-var {
+import Dimensions from 'Dimensions';
+import Orientation from 'react-native-orientation';
+import {
   PublisherView,
   SubscriberView,
   initPublisher,
-  initSession
-} = OT;
+  initSession,
+} from './src/index.ios.js';
+import { getBestDimensions } from './src/layout_container.ios.js';
+import Icon from 'react-native-vector-icons/Ionicons';
 
-var LoadingView = require('./views/loading_view.ios.js');
-var RoomInputView = require('./views/room_input_view.ios.js');
+import LoadingView from './views/loading_view.ios.js';
+import RoomInputView from './views/room_input_view.ios.js';
 
-var rntb = React.createClass({
+const styles = StyleSheet.create({
+  container: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    justifyContent: 'center',
+    flex: 1,
+    backgroundColor: '#262422',
+  },
+  welcome: {
+    fontSize: 20,
+    textAlign: 'center',
+    margin: 10,
+  },
+  instructions: {
+    textAlign: 'center',
+    color: '#333333',
+    marginBottom: 5,
+  },
+  publisher: {
+    position: 'absolute',
+    top: 20,
+    right: 10,
+    width: 100,
+    height: 75,
+    backgroundColor: 'black',
+  },
+  bottomBar: {
+    position: 'absolute',
+    bottom: 0,
+    left: 20,
+    right: 20,
+    height: 50,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    backgroundColor: 'rgba(0, 0, 0, 0)',
+    color: '#DCD9CD',
+  },
+  subscriberButtons: {
+    height: 50,
+    backgroundColor: 'rgba(0, 0, 0, 0)',
+  },
+  subscriberView: {
+    position: 'absolute',
+    top: 0,
+    right: 0,
+    left: 0,
+    bottom: 0,
+  },
+  subscriberContainer: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+});
 
-  getInitialState: function() {
+const ReactMeet = React.createClass({
+
+  getInitialState() {
     return {
       sessionState: 'DISCONNECTED',
       streams: [],
@@ -42,33 +92,30 @@ var rntb = React.createClass({
       room: null,
       orientation: 'PORTRAIT',
       publishingVideo: true,
-      publishingAudio: true
+      publishingAudio: true,
     };
   },
 
-  componentDidMount : function() {
+  componentDidMount() {
     StatusBarIOS.setStyle('light-content');
     Orientation.unlockAllOrientations();
     Orientation.addOrientationListener(this._orientationDidChange);
   },
 
-  componentWillUnmount: function () {
+  componentWillUnmount() {
     Orientation.removeOrientationListener(this._orientationDidChange);
   },
 
-  connectToRoom: function(room) {
+  connectToRoom(room) {
     // Fetch from meet.tokbox.com
-    this.setState((state) => {
+    this.setState(state => {
       state.room = room;
       return state;
     });
-    fetch('https://meet.tokbox.com/' + room).then(data => {
-      return data.json();
-    }).then(room => {
-      return initSession(room.apiKey, room.sessionId, room.token);
-    })
+    fetch('https://meet.tokbox.com/' + room)
+      .then(data => data.json())
+      .then(room => initSession(room.apiKey, room.sessionId, room.token))
       .then(session => {
-
         this.setState({ sessionState: 'Connecting...' });
         this.session = session;
         session.on('streamCreated', this.streamCreated);
@@ -95,12 +142,12 @@ var rntb = React.createClass({
 
   session: null,
 
-  streamCreated: function(stream) {
+  streamCreated(stream) {
     this.session.subscribe(stream.streamId)
       .then(subscriberId => {
         LayoutAnimation.easeInEaseOut();
-        this.setState(function(state) {
-          state.streams.push({ subscriberId: subscriberId, streamId: stream.streamId });
+        this.setState(state => {
+          state.streams.push({ subscriberId, streamId: stream.streamId });
           return state;
         });
       })
@@ -109,58 +156,58 @@ var rntb = React.createClass({
       });
   },
 
-  streamDestroyed: function(stream) {
+  streamDestroyed(stream) {
     LayoutAnimation.easeInEaseOut();
-    this.setState(function(state) {
-      state.streams = state.streams.filter(function(priorStream) {
-        return priorStream.streamId != stream.streamId;
-      });
+    this.setState(state => {
+      state.streams = state.streams
+        .filter(priorStream => priorStream.streamId !== stream.streamId);
       return state;
     });
   },
 
-  _orientationDidChange : function(orientation) {
+  _orientationDidChange(orientation) {
     this.setState({
-      orientation
+      orientation,
     });
     console.log('orientationChanged ' + orientation);
   },
 
-  sessionDidDisconnect: function() {
+  sessionDidDisconnect() {
     this.session.off('streamCreated', this.streamCreated);
     this.session.off('streamDestroyed', this.streamDestroyed);
     this.session.off('sessionDidDisconnect', this.sessionDidDisconnect);
     this.session = null;
     this.setState({
-      streams: []
+      streams: [],
     });
   },
 
-  render: function() {
+  render() {
     if (!this.state.room) {
-      return <RoomInputView onSubmit={(room) => this.connectToRoom(room)}/>;
+      return <RoomInputView onSubmit={room => this.connectToRoom(room)}/>;
     }
 
     if (!this.state.loaded) {
       return <LoadingView/>;
     }
 
-    var publisher;
+    let publisher;
     if (this.state.publishing) {
       publisher = <PublisherView style={ styles.publisher } />;
     }
 
-    var {width, height} = Dimensions.get('window');
+    const { width, height } = Dimensions.get('window');
     console.log(width + 'x' + height);
-    var portrait = this.state.orientation === 'PORTRAIT';
-    var dimensions = getBestDimensions(9/16, 4/2, this.state.streams.length, portrait ? width : height,
+    const portrait = this.state.orientation === 'PORTRAIT';
+    const dimensions = getBestDimensions(9 / 16, 4 / 2, this.state.streams.length,
+      portrait ? width : height,
       portrait ? height : width);
 
-    var subscriberViews = this.state.streams.map(item => {
-      var sub = <SubscriberView subscriberId={ item.subscriberId }
+    const subscriberViews = this.state.streams.map(item => {
+      const sub = <SubscriberView subscriberId={ item.subscriberId }
                   key={ item.subscriberId }
                   style={ styles.subscriberView }/>;
-      var setVideo = state => {
+      const setVideo = state => {
         return () => this.session.setSubscribeToVideo(state, item.subscriberId);
       };
       var setAudio = state => {
@@ -185,13 +232,13 @@ var rntb = React.createClass({
         {sub}
       </View>);
     });
-    var videoButton = this.state.publishingVideo ?
+    const videoButton = this.state.publishingVideo ?
       (<TouchableHighlight onPress={this.onPressVideoOff}>
           <Icon name="ios-videocam" size={30} color="#DCD9CD"></Icon>
       </TouchableHighlight>) : (<TouchableHighlight onPress={this.onPressVideoOn}>
           <Icon name="ios-videocam-outline" size={30} color="#DCD9CD"></Icon>
       </TouchableHighlight>);
-    var audioButton = !this.state.publishingAudio ? (<TouchableHighlight onPress={this.onPressAudioOn}>
+    const audioButton = !this.state.publishingAudio ? (<TouchableHighlight onPress={this.onPressAudioOn}>
         <Icon name="ios-mic-off" size={30} color="#DCD9CD"></Icon>
       </TouchableHighlight>) : (<TouchableHighlight onPress={this.onPressAudioOff}>
         <Icon name="ios-mic" size={30} color="#DCD9CD"></Icon>
@@ -214,36 +261,36 @@ var rntb = React.createClass({
     );
   },
 
-  onPressAudioOn: function() {
+  onPressAudioOn() {
     this.session.setPublishAudio(true);
     this.setState({
-      publishingAudio: true
+      publishingAudio: true,
     });
   },
 
-  onPressAudioOff: function() {
+  onPressAudioOff() {
     this.session.setPublishAudio(false);
     this.setState({
-      publishingAudio: false
+      publishingAudio: false,
     });
   },
 
-  onPressVideoOn: function() {
+  onPressVideoOn() {
     this.session.setPublishVideo(true);
     this.setState({
-      publishingVideo: true
+      publishingVideo: true,
     });
   },
 
-  onPressVideoOff: function() {
+  onPressVideoOff() {
     this.session.setPublishVideo(false);
     this.setState({
-      publishingVideo: false
+      publishingVideo: false,
     });
   },
 
-  onPressCameraPosition: function() {
-    var position = this.state.cameraPosition === 'front' ? 'back' : 'front';
+  onPressCameraPosition() {
+    const position = this.state.cameraPosition === 'front' ? 'back' : 'front';
     this.session.setPublisherCameraPosition(position)
       .then(() => this.getCameraPosition())
       .catch(err => {
@@ -251,77 +298,19 @@ var rntb = React.createClass({
       });
   },
 
-  getCameraPosition: function() {
+  getCameraPosition() {
     return this.session.publisherCameraPosition()
       .then(position => this.setState({ cameraPosition: position }));
   },
 
-  onPressLeaveRoom: function() {
-    this.setState({ sessionState: 'Leaving...'});
+  onPressLeaveRoom() {
+    this.setState({ sessionState: 'Leaving...' });
     this.session.disconnect()
-      .then(function() {
-        this.setState({ room: '' });
-      }.bind(this))
+      .then(() => this.setState({ room: '' }))
       .catch(err => {
         this.setState({ sessionState: 'Error! ' + err });
       });
-  }
+  },
 });
 
-var styles = StyleSheet.create({
-  container: {
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    justifyContent: 'center',
-    flex: 1,
-    backgroundColor: '#262422'
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-  },
-  publisher: {
-    position: 'absolute',
-    top: 20,
-    right: 10,
-    width: 100,
-    height: 75,
-    backgroundColor: 'black'
-  },
-  bottomBar: {
-    position: 'absolute',
-    bottom: 0,
-    left: 20,
-    right: 20,
-    height: 50,
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    backgroundColor: 'rgba(0, 0, 0, 0)',
-    color: '#DCD9CD'
-  },
-  subscriberButtons: {
-    height: 50,
-    backgroundColor: 'rgba(0, 0, 0, 0)'
-  },
-  subscriberView: {
-    position: 'absolute',
-    top: 0,
-    right: 0,
-    left: 0,
-    bottom: 0
-  },
-  subscriberContainer: {
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center'
-  }
-});
-
-
-AppRegistry.registerComponent('rntb', () => rntb);
+AppRegistry.registerComponent('ReactMeet', () => ReactMeet);

@@ -1,7 +1,5 @@
-'use strict';
+import OpenTokSessionManager from '../opentok.ios.js';
 
-var OpenTokSessionManager = require('../opentok.ios.js');
-
-module.exports = function() {
+export default function() {
   return OpenTokSessionManager.initPublisher();
-};
+}
