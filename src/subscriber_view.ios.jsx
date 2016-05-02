@@ -1,7 +1,4 @@
-'use strict';
-
-var React = require('react-native');
-var { requireNativeComponent } = React;
+import React, { requireNativeComponent } from 'react-native';
 
 class SubscriberView extends React.Component {
   render() {
@@ -14,6 +11,6 @@ SubscriberView.propTypes = {
   subscriberId: React.PropTypes.string.isRequired,
 };
 
-var ReactSubscriber = requireNativeComponent('ReactSubscriber', SubscriberView);
+const ReactSubscriber = requireNativeComponent('ReactSubscriber', SubscriberView);
 
-module.exports = SubscriberView;
+export default SubscriberView;

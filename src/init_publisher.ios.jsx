@@ -1,8 +1,6 @@
-'use strict';
+import OpenTokSessionManager from '../opentok.ios';
 
-var OpenTokSessionManager = require('../opentok.ios.js');
-
-module.exports = function() {
+const initPublisher = function() {
   return new Promise(function(resolve, reject) {
     OpenTokSessionManager.initPublisher(err => {
       if (err) {
@@ -13,3 +11,5 @@ module.exports = function() {
     });
   });
 };
+
+export default initPublisher;

@@ -3,10 +3,22 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "start": "node_modules/react-native/packager/packager.sh",
-    "build": "react-native bundle --minify"
+    "start": "webpack --watch & node_modules/react-native/packager/packager.sh",
+    "build": "webpack && react-native bundle --minify",
+    "eslint": "eslint . *.jsx views/*.jsx src/*.jsx"
   },
   "dependencies": {
     "react-native": "^0.8.0"
+  },
+  "devDependencies": {
+    "babel-core": "^5.8.21",
+    "babel-loader": "^5.3.2",
+    "eslint": "^0.24.1",
+    "eslint-config-opentok": "0.0.1",
+    "eslint-plugin-react": "^3.2.1",
+    "imports-loader": "^0.6.4",
+    "node-libs-browser": "^0.5.2",
+    "react-native-cli": "^0.1.4",
+    "webpack": "^1.11.0"
   }
 }

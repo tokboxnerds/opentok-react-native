@@ -1,18 +1,11 @@
-/*global require, fetch*/
-/*jshint -W097, esnext:true */
+import { DeviceEventEmitter } from 'react-native';
+import NativeModules from 'NativeModules';
 
-'use strict';
+const NativeOpenTokSessionManager = NativeModules.OpenTokSessionManager;
 
-var react = require('react-native');
-var NativeModules = require('NativeModules');
+const deviceEventHandlers = {};
 
-var { DeviceEventEmitter } = react;
-
-var NativeOpenTokSessionManager = NativeModules.OpenTokSessionManager;
-
-var deviceEventHandlers = {};
-
-var OpenTokSessionManager = {
+const OpenTokSessionManager = {
 
   addEventListener: function(type, handler) {
     if (!deviceEventHandlers[type]) {
@@ -26,7 +19,7 @@ var OpenTokSessionManager = {
     return {
       remove() {
         OpenTokSessionManager.removeEventListener(type, handler);
-      }
+      },
     };
   },
 
@@ -50,4 +43,4 @@ var OpenTokSessionManager = {
   subscribeToStream: NativeOpenTokSessionManager.subscribeToStream,
 };
 
-module.exports = OpenTokSessionManager;
+export default OpenTokSessionManager;
